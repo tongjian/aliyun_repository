@@ -21,6 +21,7 @@
 
 	<mvc:annotation-driven />
 	<mvc:resources location="/js/" mapping="/js/**"/>	
+	<mvc:resources location="/image/" mapping="/image/**"/>	
 	<mvc:resources location="/view/bootstrap/" mapping="/view/bootstrap/*.html"/>	
 	
 	<!-- 视图解析器 -->
