@@ -10,11 +10,10 @@ public class DemoController {
 
 	private static final Log logger = LogFactory.getLog(DemoController.class);
 	
-//	@RequestMapping("/index")
-	public String index(){
+	@RequestMapping("/home")
+	public String home(){
 		logger.info("DemoController called");
-		return "/bootstrap/starter";
-//		return "demo";
+		return "home";
 	}
 
 }
