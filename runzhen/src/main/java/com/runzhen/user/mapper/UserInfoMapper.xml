@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0"
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.runzhen.user.mapper.UserInfoMapper">
-	<resultMap type="com.runzhen.user.dao.UserInfo" id="BaseResultMap">
+<mapper namespace="com.runzhen.user.dao.UserInfoMapper">
+	<resultMap type="com.runzhen.user.domain.UserInfo" id="BaseResultMap">
 		<id property="userId" column="user_id" javaType="java.lang.Integer" />
 		<result property="phoneNumber" column="phone_number" javaType="java.lang.String" />
 		<result property="userCode" column="user_code" javaType="java.lang.String" />
@@ -12,16 +12,16 @@
 		<result property="password" column="password" javaType="java.lang.String" />
 		<result property="address" column="address" javaType="java.lang.String" />
 		<result property="sex" column="sex" javaType="java.lang.Integer" />
-		<result property="createDate" column="create_date" javaType="java.util.Date" />
-		<result property="birthDate" column="birth_date" javaType="java.util.Date" />
+		<result property="createDate" column="create_date" />
+		<result property="birthDate" column="birth_date" />
 		<result property="remark" column="remark" javaType="java.lang.String" />
-		<result property="updateDate" column="update_date" javaType="java.util.Date" />
+		<result property="updateDate" column="update_date" />
 		<result property="updateUser" column="update_user" javaType="java.lang.String" />
 		<result property="active" column="active" javaType="java.lang.String" />
 	</resultMap>
 	
 	<sql id="Base_Column_List">
-	  user_id, phone_number, user_code, user_name, email, qq, passward, address, sex, create_date, 
+	  user_id, phone_number, user_code, user_name, email, qq, password, address, sex, create_date, 
 	  birth_date, remark, upate_date, upate_user, active
 	</sql>
 	
@@ -37,22 +37,22 @@
 	  where user_id = #{userId,jdbcType=INTEGER}
 	</delete>
 	
-	<insert id="insert" parameterType="com.runzhen.user.dao.UserInfo">
+	<insert id="insert" parameterType="com.runzhen.user.domain.UserInfo">
 	  insert into user_info (user_id, phone_number, user_code, 
 	    user_name, email, qq, 
-	    passward, address, sex, 
+	    password, address, sex, 
 	    create_date, birth_date, remark, 
 	    upate_date, upate_user, active
 	    )
 	  values (#{userId,jdbcType=INTEGER}, #{phoneNumber,jdbcType=VARCHAR}, #{userCode,jdbcType=VARCHAR}, 
 	    #{userName,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, 
-	    #{passward,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, 
-	    #{createDate,jdbcType=java.util.Date}, #{birthDate,jdbcType=java.util.Date}, #{remark,jdbcType=VARCHAR}, 
-	    #{upateDate,jdbcType=java.util.Date}, #{upateUser,jdbcType=VARCHAR}, #{active,jdbcType=VARCHAR}
+	    #{password,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, 
+	    #{createDate}, #{birthDate}, #{remark,jdbcType=VARCHAR}, 
+	    #{upateDate}, #{upateUser,jdbcType=VARCHAR}, #{active,jdbcType=VARCHAR}
 	    )
 	</insert>
 	
-	<insert id="insertSelective" parameterType="com.runzhen.user.dao.UserInfo">
+	<insert id="insertSelective" parameterType="com.runzhen.user.domain.UserInfo">
 	  insert into user_info
 	  <trim prefix="(" suffix=")" suffixOverrides=",">
 	    <if test="userId != null">
@@ -73,8 +73,8 @@
 	    <if test="qq != null">
 	      qq,
 	    </if>
-	    <if test="passward != null">
-	      passward,
+	    <if test="password != null">
+	      password,
 	    </if>
 	    <if test="address != null">
 	      address,
@@ -120,8 +120,8 @@
 	    <if test="qq != null">
 	      #{qq,jdbcType=VARCHAR},
 	    </if>
-	    <if test="passward != null">
-	      #{passward,jdbcType=VARCHAR},
+	    <if test="password != null">
+	      #{password,jdbcType=VARCHAR},
 	    </if>
 	    <if test="address != null">
 	      #{address,jdbcType=VARCHAR},
@@ -130,16 +130,16 @@
 	      #{sex,jdbcType=INTEGER},
 	    </if>
 	    <if test="createDate != null">
-	      #{createDate,jdbcType=java.util.Date},
+	      #{createDate},
 	    </if>
 	    <if test="birthDate != null">
-	      #{birthDate,jdbcType=java.util.Date},
+	      #{birthDate},
 	    </if>
 	    <if test="remark != null">
 	      #{remark,jdbcType=VARCHAR},
 	    </if>
 	    <if test="upateDate != null">
-	      #{upateDate,jdbcType=java.util.Date},
+	      #{upateDate},
 	    </if>
 	    <if test="upateUser != null">
 	      #{upateUser,jdbcType=VARCHAR},
@@ -150,7 +150,7 @@
 	  </trim>
 	</insert>
 	
-	<update id="updateByPrimaryKeySelective" parameterType="com.runzhen.user.dao.UserInfo">
+	<update id="updateByPrimaryKeySelective" parameterType="com.runzhen.user.domain.UserInfo">
 	  update user_info
 	  <set>
 	    <if test="phoneNumber != null">
@@ -168,8 +168,8 @@
 	    <if test="qq != null">
 	      qq = #{qq,jdbcType=VARCHAR},
 	    </if>
-	    <if test="passward != null">
-	      passward = #{passward,jdbcType=VARCHAR},
+	    <if test="password != null">
+	      password = #{password,jdbcType=VARCHAR},
 	    </if>
 	    <if test="address != null">
 	      address = #{address,jdbcType=VARCHAR},
@@ -178,16 +178,16 @@
 	      sex = #{sex,jdbcType=INTEGER},
 	    </if>
 	    <if test="createDate != null">
-	      create_date = #{createDate,jdbcType=java.util.Date},
+	      create_date = #{createDate},
 	    </if>
 	    <if test="birthDate != null">
-	      birth_date = #{birthDate,jdbcType=java.util.Date},
+	      birth_date = #{birthDate},
 	    </if>
 	    <if test="remark != null">
 	      remark = #{remark,jdbcType=VARCHAR},
 	    </if>
 	    <if test="upateDate != null">
-	      upate_date = #{upateDate,jdbcType=java.util.Date},
+	      upate_date = #{upateDate},
 	    </if>
 	    <if test="upateUser != null">
 	      upate_user = #{upateUser,jdbcType=VARCHAR},
@@ -199,20 +199,20 @@
 	  where user_id = #{userId,jdbcType=INTEGER}
 	</update>
 	
-	<update id="updateByPrimaryKey" parameterType="com.runzhen.user.dao.UserInfo">
+	<update id="updateByPrimaryKey" parameterType="com.runzhen.user.domain.UserInfo">
 	  update user_info
 	  set phone_number = #{phoneNumber,jdbcType=VARCHAR},
 	    user_code = #{userCode,jdbcType=VARCHAR},
 	    user_name = #{userName,jdbcType=VARCHAR},
 	    email = #{email,jdbcType=VARCHAR},
 	    qq = #{qq,jdbcType=VARCHAR},
-	    passward = #{passward,jdbcType=VARCHAR},
+	    password = #{password,jdbcType=VARCHAR},
 	    address = #{address,jdbcType=VARCHAR},
 	    sex = #{sex,jdbcType=INTEGER},
-	    create_date = #{createDate,jdbcType=java.util.Date},
-	    birth_date = #{birthDate,jdbcType=java.util.Date},
+	    create_date = #{createDate},
+	    birth_date = #{birthDate},
 	    remark = #{remark,jdbcType=VARCHAR},
-	    upate_date = #{upateDate,jdbcType=java.util.Date},
+	    upate_date = #{upateDate},
 	    upate_user = #{upateUser,jdbcType=VARCHAR},
 	    active = #{active,jdbcType=VARCHAR}
 	  where user_id = #{userId,jdbcType=INTEGER}

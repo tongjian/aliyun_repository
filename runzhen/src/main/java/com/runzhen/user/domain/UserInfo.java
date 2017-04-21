@@ -15,7 +15,7 @@ public class UserInfo {
 
     private String qq;
 
-    private String passward;
+    private String password;
 
     private String address;
 
@@ -81,12 +81,12 @@ public class UserInfo {
         this.qq = qq == null ? null : qq.trim();
     }
 
-    public String getPassward() {
-        return passward;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPassward(String passward) {
-        this.passward = passward == null ? null : passward.trim();
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
     }
 
     public String getAddress() {
