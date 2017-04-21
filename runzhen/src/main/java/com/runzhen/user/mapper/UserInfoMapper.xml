@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.runzhen.user.mapper.UserInfoMapper">
+	<resultMap type="com.runzhen.user.dao.UserInfo" id="BaseResultMap">
+		<id property="userId" column="user_id" javaType="java.lang.Integer" />
+		<result property="phoneNumber" column="phone_number" javaType="java.lang.String" />
+		<result property="userCode" column="user_code" javaType="java.lang.String" />
+		<result property="userName" column="user_name" javaType="java.lang.String" />
+		<result property="email" column="email" javaType="java.lang.String" />
+		<result property="qq" column="qq" javaType="java.lang.String" />
+		<result property="password" column="password" javaType="java.lang.String" />
+		<result property="address" column="address" javaType="java.lang.String" />
+		<result property="sex" column="sex" javaType="java.lang.Integer" />
+		<result property="createDate" column="create_date" javaType="java.util.Date" />
+		<result property="birthDate" column="birth_date" javaType="java.util.Date" />
+		<result property="remark" column="remark" javaType="java.lang.String" />
+		<result property="updateDate" column="update_date" javaType="java.util.Date" />
+		<result property="updateUser" column="update_user" javaType="java.lang.String" />
+		<result property="active" column="active" javaType="java.lang.String" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+	  user_id, phone_number, user_code, user_name, email, qq, passward, address, sex, create_date, 
+	  birth_date, remark, upate_date, upate_user, active
+	</sql>
+	
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+	  select 
+	  <include refid="Base_Column_List" />
+	  from user_info
+	  where user_id = #{userId,jdbcType=INTEGER}
+	</select>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+	  delete from user_info
+	  where user_id = #{userId,jdbcType=INTEGER}
+	</delete>
+	
+	<insert id="insert" parameterType="com.runzhen.user.dao.UserInfo">
+	  insert into user_info (user_id, phone_number, user_code, 
+	    user_name, email, qq, 
+	    passward, address, sex, 
+	    create_date, birth_date, remark, 
+	    upate_date, upate_user, active
+	    )
+	  values (#{userId,jdbcType=INTEGER}, #{phoneNumber,jdbcType=VARCHAR}, #{userCode,jdbcType=VARCHAR}, 
+	    #{userName,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, 
+	    #{passward,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, 
+	    #{createDate,jdbcType=java.util.Date}, #{birthDate,jdbcType=java.util.Date}, #{remark,jdbcType=VARCHAR}, 
+	    #{upateDate,jdbcType=java.util.Date}, #{upateUser,jdbcType=VARCHAR}, #{active,jdbcType=VARCHAR}
+	    )
+	</insert>
+	
+	<insert id="insertSelective" parameterType="com.runzhen.user.dao.UserInfo">
+	  insert into user_info
+	  <trim prefix="(" suffix=")" suffixOverrides=",">
+	    <if test="userId != null">
+	      user_id,
+	    </if>
+	    <if test="phoneNumber != null">
+	      phone_number,
+	    </if>
+	    <if test="userCode != null">
+	      user_code,
+	    </if>
+	    <if test="userName != null">
+	      user_name,
+	    </if>
+	    <if test="email != null">
+	      email,
+	    </if>
+	    <if test="qq != null">
+	      qq,
+	    </if>
+	    <if test="passward != null">
+	      passward,
+	    </if>
+	    <if test="address != null">
+	      address,
+	    </if>
+	    <if test="sex != null">
+	      sex,
+	    </if>
+	    <if test="createDate != null">
+	      create_date,
+	    </if>
+	    <if test="birthDate != null">
+	      birth_date,
+	    </if>
+	    <if test="remark != null">
+	      remark,
+	    </if>
+	    <if test="upateDate != null">
+	      upate_date,
+	    </if>
+	    <if test="upateUser != null">
+	      upate_user,
+	    </if>
+	    <if test="active != null">
+	      active,
+	    </if>
+	  </trim>
+	  <trim prefix="values (" suffix=")" suffixOverrides=",">
+	    <if test="userId != null">
+	      #{userId,jdbcType=INTEGER},
+	    </if>
+	    <if test="phoneNumber != null">
+	      #{phoneNumber,jdbcType=VARCHAR},
+	    </if>
+	    <if test="userCode != null">
+	      #{userCode,jdbcType=VARCHAR},
+	    </if>
+	    <if test="userName != null">
+	      #{userName,jdbcType=VARCHAR},
+	    </if>
+	    <if test="email != null">
+	      #{email,jdbcType=VARCHAR},
+	    </if>
+	    <if test="qq != null">
+	      #{qq,jdbcType=VARCHAR},
+	    </if>
+	    <if test="passward != null">
+	      #{passward,jdbcType=VARCHAR},
+	    </if>
+	    <if test="address != null">
+	      #{address,jdbcType=VARCHAR},
+	    </if>
+	    <if test="sex != null">
+	      #{sex,jdbcType=INTEGER},
+	    </if>
+	    <if test="createDate != null">
+	      #{createDate,jdbcType=java.util.Date},
+	    </if>
+	    <if test="birthDate != null">
+	      #{birthDate,jdbcType=java.util.Date},
+	    </if>
+	    <if test="remark != null">
+	      #{remark,jdbcType=VARCHAR},
+	    </if>
+	    <if test="upateDate != null">
+	      #{upateDate,jdbcType=java.util.Date},
+	    </if>
+	    <if test="upateUser != null">
+	      #{upateUser,jdbcType=VARCHAR},
+	    </if>
+	    <if test="active != null">
+	      #{active,jdbcType=VARCHAR},
+	    </if>
+	  </trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.runzhen.user.dao.UserInfo">
+	  update user_info
+	  <set>
+	    <if test="phoneNumber != null">
+	      phone_number = #{phoneNumber,jdbcType=VARCHAR},
+	    </if>
+	    <if test="userCode != null">
+	      user_code = #{userCode,jdbcType=VARCHAR},
+	    </if>
+	    <if test="userName != null">
+	      user_name = #{userName,jdbcType=VARCHAR},
+	    </if>
+	    <if test="email != null">
+	      email = #{email,jdbcType=VARCHAR},
+	    </if>
+	    <if test="qq != null">
+	      qq = #{qq,jdbcType=VARCHAR},
+	    </if>
+	    <if test="passward != null">
+	      passward = #{passward,jdbcType=VARCHAR},
+	    </if>
+	    <if test="address != null">
+	      address = #{address,jdbcType=VARCHAR},
+	    </if>
+	    <if test="sex != null">
+	      sex = #{sex,jdbcType=INTEGER},
+	    </if>
+	    <if test="createDate != null">
+	      create_date = #{createDate,jdbcType=java.util.Date},
+	    </if>
+	    <if test="birthDate != null">
+	      birth_date = #{birthDate,jdbcType=java.util.Date},
+	    </if>
+	    <if test="remark != null">
+	      remark = #{remark,jdbcType=VARCHAR},
+	    </if>
+	    <if test="upateDate != null">
+	      upate_date = #{upateDate,jdbcType=java.util.Date},
+	    </if>
+	    <if test="upateUser != null">
+	      upate_user = #{upateUser,jdbcType=VARCHAR},
+	    </if>
+	    <if test="active != null">
+	      active = #{active,jdbcType=VARCHAR},
+	    </if>
+	  </set>
+	  where user_id = #{userId,jdbcType=INTEGER}
+	</update>
+	
+	<update id="updateByPrimaryKey" parameterType="com.runzhen.user.dao.UserInfo">
+	  update user_info
+	  set phone_number = #{phoneNumber,jdbcType=VARCHAR},
+	    user_code = #{userCode,jdbcType=VARCHAR},
+	    user_name = #{userName,jdbcType=VARCHAR},
+	    email = #{email,jdbcType=VARCHAR},
+	    qq = #{qq,jdbcType=VARCHAR},
+	    passward = #{passward,jdbcType=VARCHAR},
+	    address = #{address,jdbcType=VARCHAR},
+	    sex = #{sex,jdbcType=INTEGER},
+	    create_date = #{createDate,jdbcType=java.util.Date},
+	    birth_date = #{birthDate,jdbcType=java.util.Date},
+	    remark = #{remark,jdbcType=VARCHAR},
+	    upate_date = #{upateDate,jdbcType=java.util.Date},
+	    upate_user = #{upateUser,jdbcType=VARCHAR},
+	    active = #{active,jdbcType=VARCHAR}
+	  where user_id = #{userId,jdbcType=INTEGER}
+	</update>
+</mapper>
