@@ -1,5 +1,7 @@
 package com.runzhen.user.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +49,12 @@ public class UserInfoServiceImpl implements IUserInfoService {
 	public int updateByPrimaryKey(UserInfo record) {
 		// TODO Auto-generated method stub
 		return userInfoMapper.updateByPrimaryKey(record);
+	}
+
+	@Override
+	public List<UserInfo> findByInfo(UserInfo record) {
+		// TODO Auto-generated method stub
+		return userInfoMapper.findByInfo(record);
 	}
 
 }

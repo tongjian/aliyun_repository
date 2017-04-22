@@ -32,6 +32,21 @@
 	  where user_id = #{userId,jdbcType=INTEGER}
 	</select>
 	
+	<select id="findByInfo" parameterType="com.runzhen.user.domain.UserInfo" resultMap="BaseResultMap">
+	  select 
+	  <include refid="Base_Column_List" />
+	  from user_info
+	  <where>
+	  	 <if test="userCode != null">
+	      and user_code = #{userCode}
+	    </if>
+	    <if test="userName != null">
+	      and user_name = #{userName}
+	    </if>
+	  </where>
+	  order by create_date desc
+	</select>
+	
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 	  delete from user_info
 	  where user_id = #{userId,jdbcType=INTEGER}

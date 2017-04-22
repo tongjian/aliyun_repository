@@ -166,25 +166,29 @@
                              <div class="form-group">
                                  <label for="userCode">用户名</label>
                                  <input name="userCode" class="form-control" type="text" data-minlength="6" maxlength="15"
-                                 	placeholder="6-15位字母或数字" required>
+                                 	placeholder="6-15位字母或数字" data-required-error="用户名不能为空." data-error="请输入6-15位字母或数字." required>
+                                 <div class="help-block with-errors"></div>
                              </div>
                              <div class="form-group">
                                  <label for="password">密码</label>
                                  <input id="password" name="password" class="form-control" type="password" data-minlength="6"
-                                 	placeholder="至少6位字母或数字" required>
+                                 	placeholder="至少6位字母或数字" data-required-error="密码不能为空." data-error="至少6位字母或数字." required>
+                                 <div class="help-block with-errors"></div>
                              </div>
                              <div class="form-group">
                                  <label for="repeatPassword">再次输入密码</label>
-                                 <input name="repeatPassword" class="form-control" type="password" data-match-error="两次输入密码不一致"
+                                 <input name="repeatPassword" class="form-control" type="password" data-match-error="密码不一致"
                                  	placeholder="至少6位字母或数字" data-match="#password" required>
+                                 <div class="help-block with-errors"></div>
                              </div>
                              <div class="form-group">
                                  <label for="email">邮箱</label>
                                  <input name="email" class="form-control" type="email" 
                                  	placeholder="例如:123@123.com" data-error="请输入正确的邮箱.">
+                                 <div class="help-block with-errors"></div>
                              </div>
                              <div class="text-right">
-                                 <button class="btn btn-primary" type="submit">提交</button>
+                                 <button class="btn btn-primary" type="button" onclick="register_onclick()">提交</button>
                                  <button class="btn btn-danger" data-dismiss="modal">取消</button>
                              </div>
                              <a href="" data-toggle="modal" data-dismiss="modal" data-target="#login">已有账号？点我登录</a>
@@ -229,15 +233,25 @@
 <script src="js/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="js/bootstrap-validator-master/dist/validator.js"></script>
 <script type="text/javascript">  
-$('#register_form').validator().on('submit', function (e) {
+
+function register_onclick(){
+	alert(3);
+	var t = $('#register_form').validator('runValidators');
+	var test = t;
+	var tj ="";
+	for(var i in test){
+		tj += i+":"+test[i]+"\n";
+	}
+	alert(tj);
+}
+
+/* $('#register_form').validator().on('submit', function (e) {
 	if (e.isDefaultPrevented()) {
 	  // handle the invalid form...
-		alert(1);
 	} else {
 	  // everything looks good!
-		alert(2);
 	}
-});
+}); */
 </script>  
 </body>
 </html>
