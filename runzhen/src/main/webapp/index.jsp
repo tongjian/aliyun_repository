@@ -10,9 +10,9 @@
 <title>首页</title>
 <link rel="icon" href="image/favicon.ico">
 <link href="js/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="js/bootstrapvalidator-0.4.5/dist/css/bootstrapValidator.min.css" rel="stylesheet">
+<link href="js/bootstrap3-dialog-master/dist/css/bootstrap-dialog.min.css" rel="stylesheet">
 <link href="css/carousel.css" rel="stylesheet">
-<style>
-</style>
 <!-- [if lt IE 9]>
 	<script src="js/html5shiv.min.js"></script>
 	<script src="js/respond.min.js"></script>
@@ -150,7 +150,7 @@
     </div>  
     
     <!-- 注册窗口 -->
-     <div id="register" class="modal fade" tabindex="-1" style="margin-top:50px;">
+     <div id="register" class="modal fade" data-backdrop="false" tabindex="-1" style="margin-top:50px;">
          <div class="modal-dialog">
              <div class="modal-content">
                  <div class="modal-body">
@@ -162,33 +162,25 @@
                      <h1 class="text-center">注册</h1>
                  </div>
                  <div class="modal-body">
-                     <form id="register_form" data-toggle="validator" role="form" class="form-group" action="user/register">
+                     <form id="register_form" role="form" class="form-group" action="">
                              <div class="form-group">
                                  <label for="userCode">用户名</label>
-                                 <input name="userCode" class="form-control" type="text" data-minlength="6" maxlength="15"
-                                 	placeholder="6-15位字母或数字" data-required-error="用户名不能为空." data-error="请输入6-15位字母或数字." required>
-                                 <div class="help-block with-errors"></div>
+                                 <input name="userCode" class="form-control" type="text" placeholder="6-15位字母或数字">
                              </div>
                              <div class="form-group">
                                  <label for="password">密码</label>
-                                 <input id="password" name="password" class="form-control" type="password" data-minlength="6"
-                                 	placeholder="至少6位字母或数字" data-required-error="密码不能为空." data-error="至少6位字母或数字." required>
-                                 <div class="help-block with-errors"></div>
+                                 <input id="password" name="password" class="form-control" type="password" placeholder="至少6位字母或数字">
                              </div>
                              <div class="form-group">
-                                 <label for="repeatPassword">再次输入密码</label>
-                                 <input name="repeatPassword" class="form-control" type="password" data-match-error="密码不一致"
-                                 	placeholder="至少6位字母或数字" data-match="#password" required>
-                                 <div class="help-block with-errors"></div>
+                                 <label for="repassword">再次输入密码</label>
+                                 <input name="repassword" class="form-control" type="password" placeholder="至少6位字母或数字" >
                              </div>
                              <div class="form-group">
                                  <label for="email">邮箱</label>
-                                 <input name="email" class="form-control" type="email" 
-                                 	placeholder="例如:123@123.com" data-error="请输入正确的邮箱.">
-                                 <div class="help-block with-errors"></div>
+                                 <input name="email" class="form-control" type="email" placeholder="例如:123@123.com" >
                              </div>
                              <div class="text-right">
-                                 <button class="btn btn-primary" type="button" onclick="register_onclick()">提交</button>
+                                 <button class="btn btn-primary" type="button" onclick="register_click()">提交</button>
                                  <button class="btn btn-danger" data-dismiss="modal">取消</button>
                              </div>
                              <a href="" data-toggle="modal" data-dismiss="modal" data-target="#login">已有账号？点我登录</a>
@@ -198,7 +190,7 @@
          </div>
      </div>
      <!-- 登录窗口 -->
-      <div id="login" class="modal fade" style="margin-top:60px;">
+      <div id="login" class="modal fade" data-backdrop="false" style="margin-top:60px;">
           <div class="modal-dialog">
               <div class="modal-content">
                   <div class="modal-body">
@@ -210,17 +202,17 @@
                       <h1 class="text-center">登录</h1>
                   </div>
                   <div class="modal-body">
-                      <form class="form-group" action="">
+                      <form id="login_form" role="form" class="form-group" action="">
                               <div class="form-group">
-                                  <label for="">用户名</label>
-                                  <input class="form-control" type="text" placeholder="">
+                                  <label for="userCode">用户名</label>
+                                  <input name="userCode" class="form-control" type="text" placeholder="6-15位字母或数字">
                               </div>
                               <div class="form-group">
-                                  <label for="">密码</label>
-                                  <input class="form-control" type="password" placeholder="">
+                                  <label for="password">密码</label>
+                                  <input name="password" class="form-control" type="password" placeholder="至少6位字母或数字">
                               </div>
                               <div class="text-right">
-                                  <button class="btn btn-primary" type="submit">登录</button>
+                                  <button class="btn btn-primary" type="button" onclick="login_click()">登录</button>
                                   <button class="btn btn-danger" data-dismiss="modal">取消</button>
                              </div>
                              <a href="" data-toggle="modal" data-dismiss="modal" data-target="#register">还没有账号？点我注册</a>
@@ -232,26 +224,180 @@
 <script src="js/jquery-3.2.1.js"></script>
 <script src="js/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="js/bootstrap-validator-master/dist/validator.js"></script>
+<script src="js/bootstrapvalidator-0.4.5/dist/js/bootstrapValidator.js"></script>
+<script src="js/bootstrap3-dialog-master/dist/js/bootstrap-dialog.min.js"></script>
 <script type="text/javascript">  
+ /*   var types = [BootstrapDialog.TYPE_DEFAULT, 
+                     BootstrapDialog.TYPE_INFO, 
+                     BootstrapDialog.TYPE_PRIMARY, 
+                     BootstrapDialog.TYPE_SUCCESS, 
+                     BootstrapDialog.TYPE_WARNING, 
+                     BootstrapDialog.TYPE_DANGER]; */
 
-function register_onclick(){
-	alert(3);
-	var t = $('#register_form').validator('runValidators');
-	var test = t;
-	var tj ="";
-	for(var i in test){
-		tj += i+":"+test[i]+"\n";
+//注册验证
+$('#register_form').bootstrapValidator({
+	message : '表单验证不通过.',
+	fields : {
+		userCode : {
+			message : '用户名验证不通过.',
+			validators : {
+				notEmpty : {
+					message : '用户名不能为空.'
+				},
+				stringLength : {
+					min:6,
+					max:15,
+					message : '用户名长度必须在6到15之间.'
+				},
+				regexp : {
+					regexp: /^[a-zA-z0-9]+$/,
+					message : '用户名必须由数字字母组成.'
+				}
+			}
+		},
+		password : {
+			message : '密码验证不通过.',
+			validators : {
+				notEmpty : {
+					message : '密码不能为空.'
+				},
+				stringLength : {
+					min:6,
+					message : '密码至少6位字母或数字.'
+				},
+				regexp : {
+					regexp: /^[a-zA-z0-9]+$/,
+					message : '用户名必须由数字字母组成.'
+				},
+                different: {//不能和用户名相同
+                    field: 'userCode',//需要进行比较的input name值
+                    message: '不能和用户名相同'
+                }
+			}
+		},
+		repassword : {
+			message : '密码验证不通过.',
+			validators : {
+				notEmpty : {
+					message : '密码不能为空.'
+				},
+				stringLength : {
+					min:6,
+					message : '密码至少6位字母或数字.'
+				},
+				regexp : {
+					regexp: /^[a-zA-z0-9]+$/,
+					message : '用户名必须由数字字母组成.'
+				},
+				identical: {//相同
+				    field: 'password', //需要进行比较的input name值
+				    message: '两次密码不一致'
+				}
+			}
+		},
+		email: {
+		    validators: {
+		        emailAddress: {
+		            message: '请输入正确的邮件地址如：123@qq.com'
+		        }
+		    }
+		}
 	}
-	alert(tj);
+});
+
+//登录验证
+$('#login_form').bootstrapValidator({
+	message : '表单验证不通过.',
+	fields : {
+		userCode : {
+			message : '用户名验证不通过.',
+			validators : {
+				notEmpty : {
+					message : '用户名不能为空.'
+				},
+				stringLength : {
+					min:6,
+					max:15,
+					message : '用户名长度必须在6到15之间.'
+				},
+				regexp : {
+					regexp: /^[a-zA-z0-9]+$/,
+					message : '用户名必须由数字字母组成.'
+				}
+			}
+		},
+		password : {
+			message : '密码验证不通过.',
+			validators : {
+				notEmpty : {
+					message : '密码不能为空.'
+				},
+				stringLength : {
+					min:6,
+					message : '密码至少6位字母或数字.'
+				},
+				regexp : {
+					regexp: /^[a-zA-z0-9]+$/,
+					message : '用户名必须由数字字母组成.'
+				}
+			}
+		}
+	}
+});
+
+//注册
+function register_click(){
+	$("#register_form").data("bootstrapValidator").validate();
+	var flag = $("#register_form").data("bootstrapValidator").isValid();
+	if(flag){
+		$.ajax({
+			dataType:'json',
+			url : 'user/register',
+			data : $("#register_form").serializeArray(),
+			success:function(result){
+				BootstrapDialog.show({
+					type:BootstrapDialog.TYPE_INFO,
+					title:'提示信息',
+					closable: false,		//不能自动关闭
+					message:result,
+					buttons:[{
+						label:'确定',
+						action:function(dialog){
+							dialog.close();
+						}
+					}]
+				});
+			}
+		});
+	}
 }
 
-/* $('#register_form').validator().on('submit', function (e) {
-	if (e.isDefaultPrevented()) {
-	  // handle the invalid form...
-	} else {
-	  // everything looks good!
+//登录
+function login_click(){
+	$("#login_form").data("bootstrapValidator").validate();
+	var flag = $("#login_form").data("bootstrapValidator").isValid();
+	if(flag){
+		$.ajax({
+			dataType:'json',
+			url : 'user/login',
+			data : $("#login_form").serializeArray(),
+			success:function(result){
+				BootstrapDialog.show({
+					type:BootstrapDialog.TYPE_INFO,
+					title:'提示信息',
+					message:result,
+					closable: false,		//不能自动关闭
+					buttons:[{
+						label:'确定',
+						action:function(dialog){
+							dialog.close();
+						}
+					}]
+				});
+			}
+		});
 	}
-}); */
+}
 </script>  
 </body>
 </html>
