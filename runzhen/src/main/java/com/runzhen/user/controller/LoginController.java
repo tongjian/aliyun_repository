@@ -44,6 +44,7 @@ public class LoginController {
 		}
 		
 		userInfo.setCreateDate(new Date());
+		userInfo.setActive(UserConstant.USER_ACTIVITE_ON); 		//用户设为有效
 		int result = userInfoService.insert(userInfo);
 		logger.info("register-result:"+result);
 		return UserConstant.REGISTER_RESULT_SUCCESS;

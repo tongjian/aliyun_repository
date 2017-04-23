@@ -11,4 +11,7 @@ public class UserConstant {
 	public static String LOGIN_RESULT_USER_NOT_ESISTS="用户不存在!";
 	public static String LOGIN_RESULT_PASSWORD_NOT_CORRECT="密码不正确!";
 	public static String LOGIN_RESULT_EXCEPTION="登录异常!";
+	
+	public static String USER_ACTIVITE_ON = "Y";		//有效
+	public static String USER_ACTIVITE_OFF = "N";		//无效
 }

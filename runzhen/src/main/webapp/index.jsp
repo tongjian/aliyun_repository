@@ -19,50 +19,29 @@
 <![endif]-->
 </head>
 <body>
+	
 	<div class="navbar-wrapper">
 		<div class="container">
-			<nav class="navbar navbar-inverse navbar-static-top">
-				<div class="container">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed" 
-							data-toggle="collapse" data-target="#navbar"
-							aria-expanded="false" aria-controls="navbar">
-							<span class="sr-only">Toggle navigation</span>	
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-						<a class="navbar-brand" href="#">Project name</a>
-					</div>
-					<div id="navbar" class="collapse navbar-collapse">
-						<ul class="nav navbar-nav">
-							<li class="active"><a href="#">Home</a></li>
-							<li><a href="#about">About</a></li>
-							<li><a href="#contact">Contact</a></li>
-							<li class="dropdown">
-			                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" 
-			                  aria-haspopup="true" aria-expanded="false">
-			                  		Dropdown <span class="caret"></span>
-			                  </a>
-			                  <ul class="dropdown-menu">
-			                    <li><a href="#">Action</a></li>
-			                    <li><a href="#">Another action</a></li>
-			                    <li><a href="#">Something else here</a></li>
-			                    <li role="separator" class="divider"></li>
-			                    <li class="dropdown-header">Nav header</li>
-			                    <li><a href="#">Separated link</a></li>
-			                    <li><a href="#">One more separated link</a></li>
-			                  </ul>
-			                </li>
-						</ul>
-						
-						<div class="navbar-form navbar-right">
-							<button type="button" class="btn btn-success" 
-						    data-toggle="modal" data-target="#login" >登录</button>
-						</div>
-					</div><!-- /.nav-collapse -->
+			<nav class="navbar navbar-default navbar-inverse" role="navigation">
+				<div class="container-fluid"> 
+				    <div class="navbar-header">
+				        <a class="navbar-brand" href="#">首页</a>
+				    </div>
+				    <div>
+				        <!--向右对齐-->
+				        <form class="navbar-form navbar-right" role="search">
+				            <button id="login_button" type="button" class="btn btn-success" style="display:none;"
+					    		data-toggle="modal" data-target="#login_modal" >登录</button>
+					    	<button id="logout_button" type="button" class="btn btn-success" style="display:none;"
+					    		onclick="logout_click()">注销</button>
+				        </form>
+				        <p id="userCode_p" class="navbar-text navbar-right" style="display:none;">
+				        	<strong>用户名:</strong>&nbsp;<em>${sessionScope.userCode}</em>
+				        </p>
+				    </div>
 				</div>
 			</nav>
+			
 		</div>
 	</div>
 	
@@ -150,7 +129,7 @@
     </div>  
     
     <!-- 注册窗口 -->
-     <div id="register" class="modal fade" data-backdrop="false" tabindex="-1" style="margin-top:50px;">
+     <div id="register_modal" class="modal fade" data-backdrop="false" tabindex="-1" style="margin-top:50px;">
          <div class="modal-dialog">
              <div class="modal-content">
                  <div class="modal-body">
@@ -190,7 +169,7 @@
          </div>
      </div>
      <!-- 登录窗口 -->
-      <div id="login" class="modal fade" data-backdrop="false" style="margin-top:60px;">
+      <div id="login_modal" class="modal fade" data-backdrop="false" style="margin-top:60px;">
           <div class="modal-dialog">
               <div class="modal-content">
                   <div class="modal-body">
@@ -215,7 +194,7 @@
                                   <button class="btn btn-primary" type="button" onclick="login_click()">登录</button>
                                   <button class="btn btn-danger" data-dismiss="modal">取消</button>
                              </div>
-                             <a href="" data-toggle="modal" data-dismiss="modal" data-target="#register">还没有账号？点我注册</a>
+                             <a href="" data-toggle="modal" data-dismiss="modal" data-target="#register_modal">还没有账号？点我注册</a>
                      </form>
                  </div>
              </div>
@@ -233,6 +212,18 @@
                      BootstrapDialog.TYPE_SUCCESS, 
                      BootstrapDialog.TYPE_WARNING, 
                      BootstrapDialog.TYPE_DANGER]; */
+$(function(){
+	var userCode = $("#userCode_hidden").val();
+	if(userCode != ''){
+		$("#login_button").css('display','none');
+		$("#logout_button").css('display','block');
+		$("#userCode_p").css('display','block');
+	}else{
+		$("#login_button").css('display','block');
+		$("#logout_button").css('display','none');
+		$("#userCode_p").css('display','none');
+	}
+});
 
 //注册验证
 $('#register_form').bootstrapValidator({
@@ -355,6 +346,7 @@ function register_click(){
 			url : 'user/register',
 			data : $("#register_form").serializeArray(),
 			success:function(result){
+				$('#register_modal').modal('hide');
 				BootstrapDialog.show({
 					type:BootstrapDialog.TYPE_INFO,
 					title:'提示信息',
@@ -382,6 +374,7 @@ function login_click(){
 			url : 'user/login',
 			data : $("#login_form").serializeArray(),
 			success:function(result){
+				$('#login_modal').modal('hide');
 				BootstrapDialog.show({
 					type:BootstrapDialog.TYPE_INFO,
 					title:'提示信息',
@@ -397,6 +390,11 @@ function login_click(){
 			}
 		});
 	}
+}
+
+//注销
+function logout_click(){
+	
 }
 </script>  
 </body>
