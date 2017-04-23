@@ -14,4 +14,8 @@ public class UserConstant {
 	
 	public static String USER_ACTIVITE_ON = "Y";		//有效
 	public static String USER_ACTIVITE_OFF = "N";		//无效
+	
+	public static String LOGOUT_RESULT_SUCCESS="注销成功!";
+	
+	public static String RESULT_SUCCESS="success";
 }

@@ -72,7 +72,14 @@ public class LoginController {
 			}
 			
 			httpSession.setAttribute("userCode", userList.get(0).getUserCode());
-			return UserConstant.LOGIN_RESULT_SUCCESS;		//登录成功
+			return UserConstant.RESULT_SUCCESS;		//登录成功
 		}
+	}
+	
+	@RequestMapping("/logout")
+	@ResponseBody
+	public String logout(HttpSession httpSession){
+		httpSession.invalidate();
+		return UserConstant.RESULT_SUCCESS;
 	}
 }

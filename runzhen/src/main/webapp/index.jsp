@@ -214,7 +214,7 @@
                      BootstrapDialog.TYPE_DANGER]; */
 $(function(){
 	var userCode = $("#userCode_hidden").val();
-	if(userCode != ''){
+	if(userCode != '' && userCode != undefined){
 		$("#login_button").css('display','none');
 		$("#logout_button").css('display','block');
 		$("#userCode_p").css('display','block');
@@ -384,6 +384,11 @@ function login_click(){
 						label:'确定',
 						action:function(dialog){
 							dialog.close();
+							alert(1+":"+result);
+							if(result == "success"){
+							alert(2);
+								location.href = "/common/forward?page=manage";
+							}
 						}
 					}]
 				});
@@ -394,7 +399,27 @@ function login_click(){
 
 //注销
 function logout_click(){
-	
+	$.ajax({
+		dataType:'json',
+		url : 'common/forward',
+		success:function(result){
+			BootstrapDialog.show({
+				type:BootstrapDialog.TYPE_INFO,
+				title:'提示信息',
+				message:result,
+				closable: false,		//不能自动关闭
+				buttons:[{
+					label:'确定',
+					action:function(dialog){
+						dialog.close();
+						if(result == "success"){
+							location.reload();
+						}
+					}
+				}]
+			});
+		}
+	});
 }
 </script>  
 </body>
