@@ -13,7 +13,7 @@
     <meta name="author" content="">
     <link rel="icon" href="image/favicon.ico">
 
-    <title>Dashboard Template for Bootstrap</title>
+    <title>控制台</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../js/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
