@@ -7,7 +7,7 @@
     <display-name>runzhen</display-name>  
     
     <welcome-file-list>  
-        <welcome-file>index.jsp</welcome-file>  
+        <welcome-file>/view/main.jsp</welcome-file>  
     </welcome-file-list> 
     
     <!-- 设置根目录 -->  

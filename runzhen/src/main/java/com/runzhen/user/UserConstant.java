@@ -17,5 +17,4 @@ public class UserConstant {
 	
 	public static String LOGOUT_RESULT_SUCCESS="注销成功!";
 	
-	public static String RESULT_SUCCESS="success";
 }

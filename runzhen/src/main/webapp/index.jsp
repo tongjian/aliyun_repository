@@ -25,9 +25,10 @@
 			<nav class="navbar navbar-default navbar-inverse" role="navigation">
 				<div class="container-fluid"> 
 				    <div class="navbar-header">
-				        <a class="navbar-brand" href="#">首页</a>
+				        <a class="navbar-brand" href="#">首页(作废)</a>
 				    </div>
 				    <div>
+				    	<input id="userCode_hidden" type="hidden" value="${sessionScope.userCode}">
 				        <!--向右对齐-->
 				        <form class="navbar-form navbar-right" role="search">
 				            <button id="login_button" type="button" class="btn btn-success" style="display:none;"
@@ -38,6 +39,9 @@
 				        <p id="userCode_p" class="navbar-text navbar-right" style="display:none;">
 				        	<strong>用户名:</strong>&nbsp;<em>${sessionScope.userCode}</em>
 				        </p>
+				        <ul class="nav navbar-nav navbar-right">
+				    		<li><a id="manage_a" href="common/forward?page=manage" style="display:none;"><strong>后台管理</strong></a></li>
+				    	</ul>
 				    </div>
 				</div>
 			</nav>
@@ -217,9 +221,10 @@ $(function(){
 	if(userCode != '' && userCode != undefined){
 		$("#login_button").css('display','none');
 		$("#logout_button").css('display','block');
-		$("#userCode_p").css('display','block');
+		$("#userCode_p").css('display','block');		//显示“用户名”
+		$("#manage_a").css('display','block');			//显示“后台管理”导航
 	}else{
-		$("#login_button").css('display','block');
+		$("#login_button").css('display','block');		//
 		$("#logout_button").css('display','none');
 		$("#userCode_p").css('display','none');
 	}
@@ -343,6 +348,7 @@ function register_click(){
 	if(flag){
 		$.ajax({
 			dataType:'json',
+			cache:false,
 			url : 'user/register',
 			data : $("#register_form").serializeArray(),
 			success:function(result){
@@ -351,7 +357,7 @@ function register_click(){
 					type:BootstrapDialog.TYPE_INFO,
 					title:'提示信息',
 					closable: false,		//不能自动关闭
-					message:result,
+					message:result.resultMessage,
 					buttons:[{
 						label:'确定',
 						action:function(dialog){
@@ -371,6 +377,7 @@ function login_click(){
 	if(flag){
 		$.ajax({
 			dataType:'json',
+			cache:false,
 			url : 'user/login',
 			data : $("#login_form").serializeArray(),
 			success:function(result){
@@ -378,16 +385,15 @@ function login_click(){
 				BootstrapDialog.show({
 					type:BootstrapDialog.TYPE_INFO,
 					title:'提示信息',
-					message:result,
+					message:result.resultMessage,
 					closable: false,		//不能自动关闭
 					buttons:[{
 						label:'确定',
 						action:function(dialog){
 							dialog.close();
-							alert(1+":"+result);
-							if(result == "success"){
-							alert(2);
-								location.href = "/common/forward?page=manage";
+							if(result.resultCode == "success"){
+								location.reload();
+								/* location.href = "common/forward?page=manage"; */
 							}
 						}
 					}]
@@ -401,18 +407,19 @@ function login_click(){
 function logout_click(){
 	$.ajax({
 		dataType:'json',
-		url : 'common/forward',
+		cache:false,
+		url : 'user/logout',
 		success:function(result){
 			BootstrapDialog.show({
 				type:BootstrapDialog.TYPE_INFO,
 				title:'提示信息',
-				message:result,
+				message:result.resultMessage,
 				closable: false,		//不能自动关闭
 				buttons:[{
 					label:'确定',
 					action:function(dialog){
 						dialog.close();
-						if(result == "success"){
+						if(result.resultCode == "success"){
 							location.reload();
 						}
 					}
