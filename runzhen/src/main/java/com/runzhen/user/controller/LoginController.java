@@ -86,6 +86,7 @@ public class LoginController {
 				resultMap.put(CommonUtil.RESULT_MESSAGE, UserConstant.LOGIN_RESULT_PASSWORD_NOT_CORRECT);	//密码不正确
 			}else{
 				httpSession.setAttribute("userCode", userList.get(0).getUserCode());
+				httpSession.setAttribute("userId", userList.get(0).getUserId());
 				resultMap.put(CommonUtil.RESULT_CODE, CommonUtil.RESULT_STATUS_SUCCESS);
 				resultMap.put(CommonUtil.RESULT_MESSAGE, UserConstant.LOGIN_RESULT_SUCCESS);		//登录成功
 			}

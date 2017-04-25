@@ -79,11 +79,11 @@
      <div id="register" class="modal fade" tabindex="-1" style="margin-top:50px;">
          <div class="modal-dialog">
              <div class="modal-content">
-                 <div class="modal-body">
+                 <!-- <div class="modal-body">
                      <button class="close" data-dismiss="modal">
                          <span>&times;</span>
                      </button>
-                 </div>
+                 </div> -->
                  <div class="modal-title">
                      <h1 class="text-center">注册</h1>
                  </div>

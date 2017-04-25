@@ -67,8 +67,8 @@
           <ul class="nav nav-sidebar">
             <li><a href="#" onclick="load_userlist()">用户管理</a></li>
             <li><a href="#">角色管理</a></li>
-            <li><a href="#">Analytics</a></li>
-            <li><a href="#">Export</a></li>
+            <li><a href="#" onclick="load_userinfo()">个人信息</a></li>
+            <li><a href="#">修改密码</a></li>
           </ul>
           <ul class="nav nav-sidebar">
             <li><a href="">Nav item</a></li>
@@ -141,7 +141,16 @@ function load_userlist(){
         // 配置参数
 		loadUrl:"<%=contextPath%>/common/forward?page=user/userList"
     });
-	
+}
+
+//加载个人信息
+function load_userinfo(){
+	$("#panel_div").css("display","block");
+	$("#panel_title").text("个人信息");
+	$('#panel_div').lobiPanel({
+        // 配置参数
+		loadUrl:"<%=contextPath%>/common/forward?page=user/userinfo"
+    });
 }
 </script>
   </body>
