@@ -16,15 +16,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response,Object handler) 
 			throws Exception { 
-		String uri = request.getRequestURI();
-		String contextPath = request.getContextPath();
-		String remoteAddr = request.getRemoteAddr();
 		if(request.getSession().getAttribute("userCode") == null){
 			response.sendRedirect("/runzhen/view/main.jsp");		//跳转到首页
 		};
-		logger.info("LoginInterceptor-preHandle-uri:"+uri);
-		logger.info("LoginInterceptor-preHandle-contextPath:"+contextPath);
-		logger.info("LoginInterceptor-preHandle-remoteAddr:"+remoteAddr);
 		return true;
 	}
 }

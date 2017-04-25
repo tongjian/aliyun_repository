@@ -25,25 +25,43 @@
 	  birth_date, remark, upate_date, upate_user, active
 	</sql>
 	
+	<sql id="Sql_Where">
+		<where>
+		   <if test="userCode != null">
+		     and user_code = #{userCode}
+		   </if>
+		   <if test="userName != null">
+		     and user_name = #{userName}
+		   </if>
+		</where>
+	</sql>
+	
 	<select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
 	  select 
 	  <include refid="Base_Column_List" />
 	  from user_info
 	  where user_id = #{userId,jdbcType=INTEGER}
 	</select>
+
+	<select id="selectByPage" parameterType="com.runzhen.user.domain.UserInfo" resultMap="BaseResultMap">
+	  select 
+	  <include refid="Base_Column_List" />
+	  from user_info
+	  <include refid="Sql_Where" />
+	  limit #{offset},#{limit}
+	</select>
 	
+	<select id="getTotal" parameterType="com.runzhen.user.domain.UserInfo" resultType="java.lang.Integer">
+	  select count(1)
+	  from user_info
+	  <include refid="Sql_Where" />
+	</select>
+
 	<select id="findByInfo" parameterType="com.runzhen.user.domain.UserInfo" resultMap="BaseResultMap">
 	  select 
 	  <include refid="Base_Column_List" />
 	  from user_info
-	  <where>
-	  	 <if test="userCode != null">
-	      and user_code = #{userCode}
-	    </if>
-	    <if test="userName != null">
-	      and user_name = #{userName}
-	    </if>
-	  </where>
+	  <include refid="Sql_Where" />
 	  order by create_date desc
 	</select>
 	

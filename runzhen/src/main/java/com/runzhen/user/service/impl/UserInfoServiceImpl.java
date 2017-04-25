@@ -57,4 +57,16 @@ public class UserInfoServiceImpl implements IUserInfoService {
 		return userInfoMapper.findByInfo(record);
 	}
 
+	@Override
+	public List<UserInfo> selectByPage(UserInfo record) {
+		// TODO Auto-generated method stub
+		return userInfoMapper.selectByPage(record);
+	}
+
+	@Override
+	public Integer getTotal(UserInfo record) {
+		// TODO Auto-generated method stub
+		return userInfoMapper.getTotal(record);
+	}
+
 }

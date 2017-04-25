@@ -1,6 +1,7 @@
 package com.runzhen.user.controller;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -59,6 +60,9 @@ public class LoginController {
 		return resultMap;
 	}
 	
+	/*
+	 * 功能：登录
+	*/
 	@RequestMapping("/login")
 	@ResponseBody
 	public Map<String,String> login(UserInfo userInfo,HttpSession httpSession){
@@ -89,6 +93,9 @@ public class LoginController {
 		return resultMap;		
 	}
 	
+	/*
+	 * 功能：注销
+	*/
 	@RequestMapping("/logout")
 	@ResponseBody
 	public Map<String,String> logout(HttpSession httpSession){
@@ -98,5 +105,19 @@ public class LoginController {
 		resultMap.put(CommonUtil.RESULT_CODE, CommonUtil.RESULT_STATUS_SUCCESS);
 		resultMap.put(CommonUtil.RESULT_MESSAGE, UserConstant.LOGOUT_RESULT_SUCCESS);		//注销成功
 		return resultMap;
+	}
+	
+	/*
+	 * 功能：显示用户列表
+	*/
+	@RequestMapping("/list")
+	@ResponseBody
+	public Map<String,Object> getUserList(UserInfo record,int limit,int offset){
+		Map<String,Object> result = new HashMap<String,Object>();
+		List<UserInfo> userList = userInfoService.selectByPage(record);
+		Integer total = userInfoService.getTotal(record);
+		result.put("rows", userList);
+		result.put("total", total);
+		return result;
 	}
 }

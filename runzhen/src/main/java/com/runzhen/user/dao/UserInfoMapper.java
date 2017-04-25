@@ -17,6 +17,10 @@ public interface UserInfoMapper {
     UserInfo selectByPrimaryKey(Integer userId);
     
     List<UserInfo> findByInfo(UserInfo record);
+    
+    List<UserInfo> selectByPage(UserInfo record);
+    
+    Integer getTotal(UserInfo record);
 
     int updateByPrimaryKeySelective(UserInfo record);
 

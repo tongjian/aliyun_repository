@@ -2,7 +2,9 @@ package com.runzhen.user.domain;
 
 import java.util.Date;
 
-public class UserInfo {
+import com.runzhen.common.domain.BaseInfo;
+
+public class UserInfo extends BaseInfo{
     private Integer userId;
 
     private String phoneNumber;

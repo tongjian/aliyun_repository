@@ -19,4 +19,8 @@ public interface IUserInfoService {
     int updateByPrimaryKey(UserInfo record);
     
     List<UserInfo> findByInfo(UserInfo record);
+    
+    List<UserInfo> selectByPage(UserInfo record);
+    
+    Integer getTotal(UserInfo record);
 }
