@@ -28,7 +28,8 @@
 		        <th data-field="active" data-align="center" data-sortable="true"
 		        	data-formatter="active_formatter">是否有效</th>
 		        <th data-field="remark" data-align="center" data-sortable="true">说明</th>
-		        <th data-field="" data-align="center" data-sortable="true">操作</th>
+		        <th data-field="" data-align="center" data-sortable="true"
+		        	data-formatter="operate_formatter">操作</th>
 		    </tr>
 	    </thead>
 	</table>
@@ -37,8 +38,24 @@
 <script src="../js/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="../js/bootstrap-table-develop/dist/bootstrap-table.min.js"></script>
 <script src="../js/bootstrap-table-develop/dist/locale/bootstrap-table-zh-CN.js"></script>
+<script src="../js/json2.js"></script>
 <script src="../js/common.js"></script>
 <script type="text/javascript">
+
+/* 格式化'操作'列 */
+function operate_formatter(value,row,index){
+	var jsonRow = JSON.stringify(row);
+	return '<button type="button" onclick="editUser(\''+escape(jsonRow)+'\',\''+index+'\')" class="btn btn-primary btn-xs">修改</button>&nbsp;'+
+			'<button type="button" onclick="" class="btn btn-danger btn-xs">删除</button>';
+}
+
+function editUser(jsonRow,index){
+	var row = JSON.parse(unescape(jsonRow));		//先解码，再解析成json对象
+}
+
+function deleteUser(row,index){
+	
+}
 
 /* 格式化日期输出 */
 function date_formatter(value,row,index){
