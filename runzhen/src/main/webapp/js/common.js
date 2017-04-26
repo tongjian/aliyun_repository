@@ -19,3 +19,15 @@ Date.prototype.format = function (fmt) { //author: meizz
     if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
 }
+
+/* 格式化日期输出 */
+function common_dateFormatter(value,row,index){
+	if(value != '' && value != undefined){
+		return  new Date(value).format("yyyy-MM-dd hh:mm:ss");
+	}
+}
+
+/* 格式化输出 */
+function common_activeFormatter(value,row,index){
+	return value == 'Y' ? "有效":"无效";
+}

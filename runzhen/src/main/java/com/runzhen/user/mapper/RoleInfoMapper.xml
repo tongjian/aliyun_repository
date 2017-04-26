@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.runzhen.user.dao.RoleInfoMapper">
+  <resultMap id="BaseResultMap" type="com.runzhen.user.domain.RoleInfo">
+    <id column="role_id" jdbcType="INTEGER" property="roleId" />
+    <result column="role_code" jdbcType="VARCHAR" property="roleCode" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="upate_date" jdbcType="TIMESTAMP" property="upateDate" />
+    <result column="upate_user" jdbcType="VARCHAR" property="upateUser" />
+    <result column="active" jdbcType="VARCHAR" property="active" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    role_id, role_code, role_name, create_date, create_user, remark, upate_date, upate_user, 
+    active
+  </sql>
+  
+  <sql id="Sql_Where">
+	<where>
+	   <if test="roleId != null">
+	     and role_id = #{roleId}
+	   </if>
+	   <if test="roleCode != null">
+	     and role_code = #{roleCode}
+	   </if>
+	   <if test="roleName != null">
+	     and role_name = #{roleName}
+	   </if>
+	   <if test="active != null">
+	     and active = #{active}
+	   </if>
+	</where>
+	</sql>
+  
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+	  select 
+	  <include refid="Base_Column_List" />
+	  from role_info
+	  where role_id = #{roleId,jdbcType=INTEGER}
+	</select>
+  
+	<select id="selectByPage" parameterType="com.runzhen.user.domain.RoleInfo" resultMap="BaseResultMap">
+	  select 
+	  <include refid="Base_Column_List" />
+	  from role_info
+	  <include refid="Sql_Where" />
+	  order by create_date desc
+	  limit #{offset},#{limit}
+	</select>
+	
+	<select id="getTotal" parameterType="com.runzhen.user.domain.RoleInfo" resultType="java.lang.Integer">
+	  select count(1)
+	  from role_info
+	  <include refid="Sql_Where" />
+	</select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from role_info
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.runzhen.user.domain.RoleInfo">
+    insert into role_info (role_id, role_code, role_name, 
+      create_date, create_user, remark, 
+      upate_date, upate_user, active
+      )
+    values (#{roleId,jdbcType=INTEGER}, #{roleCode,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{upateDate,jdbcType=TIMESTAMP}, #{upateUser,jdbcType=VARCHAR}, #{active,jdbcType=VARCHAR}
+      )
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.runzhen.user.domain.RoleInfo">
+    insert into role_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="upateDate != null">
+        upate_date,
+      </if>
+      <if test="upateUser != null">
+        upate_user,
+      </if>
+      <if test="active != null">
+        active,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="upateDate != null">
+        #{upateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="upateUser != null">
+        #{upateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="active != null">
+        #{active,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.runzhen.user.domain.RoleInfo">
+    update role_info
+    <set>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="upateDate != null">
+        upate_date = #{upateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="upateUser != null">
+        upate_user = #{upateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="active != null">
+        active = #{active,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.runzhen.user.domain.RoleInfo">
+    update role_info
+    set role_code = #{roleCode,jdbcType=VARCHAR},
+      role_name = #{roleName,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      upate_date = #{upateDate,jdbcType=TIMESTAMP},
+      upate_user = #{upateUser,jdbcType=VARCHAR},
+      active = #{active,jdbcType=VARCHAR}
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </update>
+</mapper>

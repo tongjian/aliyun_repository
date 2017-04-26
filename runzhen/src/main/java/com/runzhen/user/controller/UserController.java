@@ -22,9 +22,9 @@ import com.runzhen.user.service.IUserInfoService;
 
 @Controller
 @RequestMapping("/user")
-public class LoginController {
+public class UserController {
 	
-	private static final Log logger = LogFactory.getLog(LoginController.class);
+	private static final Log logger = LogFactory.getLog(UserController.class);
 
 	@Autowired
 	private IUserInfoService userInfoService;
@@ -109,11 +109,11 @@ public class LoginController {
 	}
 	
 	/*
-	 * 功能：显示用户列表
+	 * 功能：显示用户列表,分页查询
 	*/
 	@RequestMapping("/list")
 	@ResponseBody
-	public Map<String,Object> getUserList(UserInfo record,int limit,int offset){
+	public Map<String,Object> getUserList(UserInfo record){
 		Map<String,Object> result = new HashMap<String,Object>();
 		List<UserInfo> userList = userInfoService.selectByPage(record);
 		Integer total = userInfoService.getTotal(record);
@@ -133,7 +133,7 @@ public class LoginController {
 	}
 	
 	/*
-	 * 功能：显示用户列表
+	 * 功能：根据userId查询用户
 	 */
 	@RequestMapping("/selectByPrimaryKey")
 	@ResponseBody
@@ -143,7 +143,7 @@ public class LoginController {
 	}
 	
 	/*
-	 * 功能：显示用户列表
+	 * 功能：修改用户信息
 	*/
 	@RequestMapping("/update")
 	@ResponseBody
@@ -159,7 +159,7 @@ public class LoginController {
 	}
 	
 	/*
-	 * 功能：显示用户列表
+	 * 功能：修改密码
 	*/
 	@RequestMapping("/changePassword")
 	@ResponseBody

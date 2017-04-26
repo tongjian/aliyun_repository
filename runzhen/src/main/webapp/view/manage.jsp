@@ -64,7 +64,7 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li><a href="#" onclick="manage_initPanel('用户管理','user/userList')" class="active">用户管理</a></li>
-            <li><a href="#">角色管理</a></li>
+            <li><a href="#" onclick="manage_initPanel('角色管理','user/roleList')">角色管理</a></li>
             <li><a href="#" onclick="manage_initPanel('个人信息','user/userEdit')">个人信息</a></li>
             <li><a href="#" onclick="manage_initPanel('密码修改','user/changePassword')">修改密码</a></li>
           </ul>
