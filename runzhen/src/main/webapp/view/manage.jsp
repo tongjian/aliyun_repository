@@ -15,7 +15,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="../js/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-
+	<link href="../js/bootstrapvalidator-0.4.5/dist/css/bootstrapValidator.min.css" rel="stylesheet">
 	<link href="../js/bootstrap3-dialog-master/dist/css/bootstrap-dialog.min.css" rel="stylesheet">
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
@@ -29,7 +29,7 @@
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../js/ie-emulation-modes-warning.js"></script>
-
+    
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
@@ -65,8 +65,8 @@
           <ul class="nav nav-sidebar">
             <li><a href="#" onclick="manage_initPanel('用户管理','user/userList')" class="active">用户管理</a></li>
             <li><a href="#">角色管理</a></li>
-            <li><a href="#" onclick="manage_initPanel('个人信息','user/userinfo')">个人信息</a></li>
-            <li><a href="#" onclick="manage_changePassword()">修改密码</a></li>
+            <li><a href="#" onclick="manage_initPanel('个人信息','user/userEdit')">个人信息</a></li>
+            <li><a href="#" onclick="manage_initPanel('密码修改','user/changePassword')">修改密码</a></li>
           </ul>
           <ul class="nav nav-sidebar">
             <li><a href="">Nav item</a></li>
@@ -97,6 +97,7 @@
 	<script src="../js/lobipanel-master/lib/jquery-ui.min.js"></script>
 	<script src="../js/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 	<script src="../js/bootstrap3-dialog-master/dist/js/bootstrap-dialog.min.js"></script>
+	<script src="../js/bootstrapvalidator-0.4.5/dist/js/bootstrapValidator.js"></script>
 	<script src="../js/lobipanel-master/dist/js/lobipanel.min.js"></script>
 	
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->

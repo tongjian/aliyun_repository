@@ -20,4 +20,7 @@ public class UserConstant {
 	public static String UPDATE_RESULT_SUCCESS="修改成功!";
 	public static String UPDATE_RESULT_ERROR="修改失败!";
 	
+	public static String PASSWORD_UPDATE_RESULT_SUCCESS="密码修改成功,请重新登录!";
+	public static String PASSWORD_UPDATE_RESULT_ERROR="密码修改失败,原密码输入不正确!";
+	
 }

@@ -18,6 +18,8 @@ public class UserInfo extends BaseInfo{
     private String qq;
 
     private String password;
+    
+    private String newPassword;
 
     private String address;
 
@@ -154,4 +156,12 @@ public class UserInfo extends BaseInfo{
     public void setActive(String active) {
         this.active = active == null ? null : active.trim();
     }
+
+	public String getNewPassword() {
+		return newPassword;
+	}
+
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
+	}
 }

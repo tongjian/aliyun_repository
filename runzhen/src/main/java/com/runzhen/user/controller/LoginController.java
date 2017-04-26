@@ -150,13 +150,37 @@ public class LoginController {
 	public Map<String,String> update(UserInfo userInfo,HttpSession httpSession){
 		Map<String,String> resultMap = CommonUtil.getReturnMap();
 		
-		logger.info("userinfo-update:"+userInfo.getUserName());
-		
 		userInfo.setUpateDate(new Date());  		//设置修改时间
 		userInfoService.updateByPrimaryKeySelective(userInfo);
 		
 		resultMap.put(CommonUtil.RESULT_CODE, CommonUtil.RESULT_STATUS_SUCCESS);
 		resultMap.put(CommonUtil.RESULT_MESSAGE, UserConstant.UPDATE_RESULT_SUCCESS);		//修改成功
+		return resultMap;
+	}
+	
+	/*
+	 * 功能：显示用户列表
+	*/
+	@RequestMapping("/changePassword")
+	@ResponseBody
+	public Map<String,String> changePassword(UserInfo userInfo,HttpSession httpSession){
+		Map<String,String> resultMap = CommonUtil.getReturnMap();
+		
+		UserInfo oldUserInfo = userInfoService.selectByPrimaryKey(userInfo.getUserId());
+		String oldPassword = oldUserInfo.getPassword();
+		if(oldPassword.equals(userInfo.getPassword())){
+			userInfo.setPassword(userInfo.getNewPassword());			//将密码修改为新的密码
+			userInfo.setUpateDate(new Date());  						//设置修改时间
+			userInfoService.updateByPrimaryKeySelective(userInfo);
+			
+			httpSession.invalidate(); 		//修改密码后，要求重新登录
+
+			resultMap.put(CommonUtil.RESULT_CODE, CommonUtil.RESULT_STATUS_SUCCESS);
+			resultMap.put(CommonUtil.RESULT_MESSAGE, UserConstant.PASSWORD_UPDATE_RESULT_SUCCESS);		//修改成功
+		}else{
+			resultMap.put(CommonUtil.RESULT_MESSAGE, UserConstant.PASSWORD_UPDATE_RESULT_ERROR);		//修改失败
+		}
+		
 		return resultMap;
 	}
 }
