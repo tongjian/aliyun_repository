@@ -69,4 +69,12 @@ public class UserInfoServiceImpl implements IUserInfoService {
 		return userInfoMapper.getTotal(record);
 	}
 
+	@Override
+	public UserInfo findUserByUserCode(String userCode) {
+		// TODO Auto-generated method stub
+		UserInfo info = new UserInfo();
+		info.setUserCode(userCode);
+		return userInfoMapper.findByInfo(info).get(0);
+	}
+
 }

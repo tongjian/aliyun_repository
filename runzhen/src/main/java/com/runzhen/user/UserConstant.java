@@ -17,4 +17,7 @@ public class UserConstant {
 	
 	public static String LOGOUT_RESULT_SUCCESS="注销成功!";
 	
+	public static String UPDATE_RESULT_SUCCESS="修改成功!";
+	public static String UPDATE_RESULT_ERROR="修改失败!";
+	
 }

@@ -23,4 +23,6 @@ public interface IUserInfoService {
     List<UserInfo> selectByPage(UserInfo record);
     
     Integer getTotal(UserInfo record);
+    
+    public UserInfo findUserByUserCode(String userCode);
 }

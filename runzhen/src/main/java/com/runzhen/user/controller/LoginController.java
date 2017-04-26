@@ -121,4 +121,42 @@ public class LoginController {
 		result.put("total", total);
 		return result;
 	}
+	
+	/*
+	 * 功能：显示用户列表
+	*/
+	@RequestMapping("/findInfo")
+	@ResponseBody
+	public UserInfo findUserByUserCode(String userCode){
+		UserInfo info = userInfoService.findUserByUserCode(userCode);
+		return info;
+	}
+	
+	/*
+	 * 功能：显示用户列表
+	 */
+	@RequestMapping("/selectByPrimaryKey")
+	@ResponseBody
+	public UserInfo selectByPrimaryKey(Integer userId){
+		UserInfo info = userInfoService.selectByPrimaryKey(userId);
+		return info;
+	}
+	
+	/*
+	 * 功能：显示用户列表
+	*/
+	@RequestMapping("/update")
+	@ResponseBody
+	public Map<String,String> update(UserInfo userInfo,HttpSession httpSession){
+		Map<String,String> resultMap = CommonUtil.getReturnMap();
+		
+		logger.info("userinfo-update:"+userInfo.getUserName());
+		
+		userInfo.setUpateDate(new Date());  		//设置修改时间
+		userInfoService.updateByPrimaryKeySelective(userInfo);
+		
+		resultMap.put(CommonUtil.RESULT_CODE, CommonUtil.RESULT_STATUS_SUCCESS);
+		resultMap.put(CommonUtil.RESULT_MESSAGE, UserConstant.UPDATE_RESULT_SUCCESS);		//修改成功
+		return resultMap;
+	}
 }

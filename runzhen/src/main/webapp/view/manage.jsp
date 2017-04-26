@@ -8,11 +8,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../image/favicon.ico">
-
     <title>控制台</title>
 
     <!-- Bootstrap core CSS -->
@@ -22,8 +20,8 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
     
-    <link rel="stylesheet" href="../js/bootstrap-panel/lib/jquery-ui.min.css"/>
-	<link rel="stylesheet" href="../js/bootstrap-panel/dist/css/lobipanel.min.css"/>
+    <link rel="stylesheet" href="../js/lobipanel-master/lib/jquery-ui.min.css"/>
+	<link rel="stylesheet" href="../js/lobipanel-master/dist/css/lobipanel.min.css"/>
 
     <!-- Custom styles for this template -->
     <link href="../css/dashboard.css" rel="stylesheet">
@@ -65,10 +63,10 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li><a href="#" onclick="load_userlist()">用户管理</a></li>
+            <li><a href="#" onclick="manage_initPanel('用户管理','user/userList')" class="active">用户管理</a></li>
             <li><a href="#">角色管理</a></li>
-            <li><a href="#" onclick="load_userinfo()">个人信息</a></li>
-            <li><a href="#">修改密码</a></li>
+            <li><a href="#" onclick="manage_initPanel('个人信息','user/userinfo')">个人信息</a></li>
+            <li><a href="#" onclick="manage_changePassword()">修改密码</a></li>
           </ul>
           <ul class="nav nav-sidebar">
             <li><a href="">Nav item</a></li>
@@ -96,17 +94,39 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="../js/jquery-1.12.4.min.js"></script>
     <script>window.jQuery || document.write('<script src="../js/jquery-1.12.4.min.js"><\/script>')</script>
-	<script src="../js/bootstrap-panel/lib/jquery-ui.min.js"></script>
+	<script src="../js/lobipanel-master/lib/jquery-ui.min.js"></script>
 	<script src="../js/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 	<script src="../js/bootstrap3-dialog-master/dist/js/bootstrap-dialog.min.js"></script>
-	
-	<script src="../js/bootstrap-panel/dist/js/lobipanel.min.js"></script>
+	<script src="../js/lobipanel-master/dist/js/lobipanel.min.js"></script>
 	
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
     <script src="../js/holder.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../js/ie10-viewport-bug-workaround.js"></script>
 <script type="text/javascript">  
+var panelInstance ;			//面板实例
+
+/* 页面初始化 */
+$( function() {
+	$("#panel_div").css("display","block");
+	$("#panel_title").text("用户管理");
+	$('#panel_div').lobiPanel({
+        // 配置参数
+		loadUrl : '<%=contextPath%>/common/forward?page=user/userList'
+    });
+	
+	panelInstance = $('#panel_div').data('lobiPanel');
+});
+
+/* 加载面板 */
+function manage_initPanel(title,forwardPage){
+	$("#panel_title").text(title);
+	if(forwardPage != '' && forwardPage != undefined){
+		var url = '<%=contextPath%>/common/forward?page='+forwardPage+'';
+		panelInstance.setLoadUrl(url).load();
+	}
+}
+
 //注销
 function logout_click(){
 	$.ajax({
@@ -134,24 +154,25 @@ function logout_click(){
 }
 
 //加载用户列表
-function load_userlist(){
+<%-- function manage_userlist(){
 	$("#panel_div").css("display","block");
 	$("#panel_title").text("用户管理");
 	$('#panel_div').lobiPanel({
         // 配置参数
 		loadUrl:"<%=contextPath%>/common/forward?page=user/userList"
     });
-}
+} --%>
 
 //加载个人信息
-function load_userinfo(){
+<%-- function manage_userinfo(){
 	$("#panel_div").css("display","block");
 	$("#panel_title").text("个人信息");
 	$('#panel_div').lobiPanel({
         // 配置参数
 		loadUrl:"<%=contextPath%>/common/forward?page=user/userinfo"
     });
-}
+} --%>
+
 </script>
   </body>
 </html>

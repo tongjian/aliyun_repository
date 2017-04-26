@@ -27,11 +27,17 @@
 	
 	<sql id="Sql_Where">
 		<where>
+		   <if test="userId != null">
+		     and user_id = #{userId}
+		   </if>
 		   <if test="userCode != null">
 		     and user_code = #{userCode}
 		   </if>
 		   <if test="userName != null">
 		     and user_name = #{userName}
+		   </if>
+		   <if test="active != null">
+		     and active = #{active}
 		   </if>
 		</where>
 	</sql>
@@ -48,6 +54,7 @@
 	  <include refid="Base_Column_List" />
 	  from user_info
 	  <include refid="Sql_Where" />
+	  order by create_date desc
 	  limit #{offset},#{limit}
 	</select>
 	
