@@ -25,17 +25,9 @@ public class UserInfo extends BaseInfo{
 
     private Integer sex;
 
-    private Date createDate;
-
     private Date birthDate;
 
     private String remark;
-
-    private Date updateDate;
-
-    private String updateUser;
-
-    private String active;
 
     public Integer getUserId() {
         return userId;
@@ -109,14 +101,6 @@ public class UserInfo extends BaseInfo{
         this.sex = sex;
     }
 
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
     public Date getBirthDate() {
         return birthDate;
     }
@@ -131,30 +115,6 @@ public class UserInfo extends BaseInfo{
 
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
-    }
-
-    public Date getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
-    }
-
-    public String getUpdateUser() {
-        return updateUser;
-    }
-
-    public void setUpdateUser(String updateUser) {
-        this.updateUser = updateUser == null ? null : updateUser.trim();
-    }
-
-    public String getActive() {
-        return active;
-    }
-
-    public void setActive(String active) {
-        this.active = active == null ? null : active.trim();
     }
 
 	public String getNewPassword() {

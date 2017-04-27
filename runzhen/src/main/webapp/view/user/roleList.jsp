@@ -208,7 +208,7 @@ function roleList_save(){
 function roleList_operateFormatter(value,row,index){
 	var jsonRow = JSON.stringify(row);
 	return '<button type="button" onclick="roleList_editRole(\''+escape(jsonRow)+'\',\''+index+'\')" class="btn btn-primary btn-xs">修改</button>&nbsp;'+
-			'<button type="button" onclick="roleList_deleteRole()" class="btn btn-danger btn-xs">删除</button>';
+			'<button type="button" onclick="" class="btn btn-danger btn-xs">删除</button>';
 }
 
 /* 修改角色信息 */
@@ -238,6 +238,7 @@ function roleList_queryParams(params){
 	params.roleName = $("#roleList_queryParam_roleName").val();
 	return params;
 }
+
 </script>
 </body>
 </html>

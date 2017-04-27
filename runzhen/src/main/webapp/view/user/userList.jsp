@@ -45,16 +45,12 @@
 /* 格式化'操作'列 */
 function operate_formatter(value,row,index){
 	var jsonRow = JSON.stringify(row);
-	return '<button type="button" onclick="editUser(\''+escape(jsonRow)+'\',\''+index+'\')" class="btn btn-primary btn-xs">修改</button>&nbsp;'+
+	return '<button type="button" onclick="editUser(\''+escape(jsonRow)+'\',\''+index+'\')" class="btn btn-primary btn-xs">查看</button>&nbsp;'+
 			'<button type="button" onclick="" class="btn btn-danger btn-xs">删除</button>';
 }
 
 function editUser(jsonRow,index){
 	var row = JSON.parse(unescape(jsonRow));		//先解码，再解析成json对象
-}
-
-function deleteUser(row,index){
-	
 }
 
 /* 格式化日期输出 */
