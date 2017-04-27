@@ -20,4 +20,6 @@ public interface IRoleInfoService {
     List<RoleInfo> selectByPage(RoleInfo record);
     
     Integer getTotal(RoleInfo record);
+    
+    List<RoleInfo> findByInfo(RoleInfo record);
 }

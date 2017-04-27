@@ -69,8 +69,9 @@
             <li><a href="#" onclick="manage_initPanel('密码修改','user/changePassword')">修改密码</a></li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li><a href="">Nav item</a></li>
-            <li><a href="">Nav item again</a></li>
+            <li><a href="">日志管理</a></li>
+            <li><a href="">权限管理</a></li>
+            <li><a href="">菜单管理</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -153,26 +154,6 @@ function logout_click(){
 		}
 	});
 }
-
-//加载用户列表
-<%-- function manage_userlist(){
-	$("#panel_div").css("display","block");
-	$("#panel_title").text("用户管理");
-	$('#panel_div').lobiPanel({
-        // 配置参数
-		loadUrl:"<%=contextPath%>/common/forward?page=user/userList"
-    });
-} --%>
-
-//加载个人信息
-<%-- function manage_userinfo(){
-	$("#panel_div").css("display","block");
-	$("#panel_title").text("个人信息");
-	$('#panel_div').lobiPanel({
-        // 配置参数
-		loadUrl:"<%=contextPath%>/common/forward?page=user/userinfo"
-    });
-} --%>
 
 </script>
   </body>

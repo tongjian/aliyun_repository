@@ -63,4 +63,10 @@ public class RoleInfoServiceImpl implements IRoleInfoService {
 		return roleInfoMapper.getTotal(record);
 	}
 
+	@Override
+	public List<RoleInfo> findByInfo(RoleInfo record) {
+		// TODO Auto-generated method stub
+		return roleInfoMapper.findByInfo(record);
+	}
+
 }

@@ -49,7 +49,7 @@ public class UserController {
 			resultMap.put(CommonUtil.RESULT_MESSAGE, UserConstant.REGISTER_RESULT_USER_ESISTS);
 		}else{
 			userInfo.setCreateDate(new Date());
-			userInfo.setActive(UserConstant.USER_ACTIVITE_ON); 		//用户设为有效
+			userInfo.setActive(UserConstant.ACTIVITE_ON); 		//用户设为有效
 			int result = userInfoService.insert(userInfo);
 			logger.info("register-result:"+result);
 			
@@ -150,7 +150,7 @@ public class UserController {
 	public Map<String,String> update(UserInfo userInfo,HttpSession httpSession){
 		Map<String,String> resultMap = CommonUtil.getReturnMap();
 		
-		userInfo.setUpateDate(new Date());  		//设置修改时间
+		userInfo.setUpdateDate(new Date());  		//设置修改时间
 		userInfoService.updateByPrimaryKeySelective(userInfo);
 		
 		resultMap.put(CommonUtil.RESULT_CODE, CommonUtil.RESULT_STATUS_SUCCESS);
@@ -170,7 +170,7 @@ public class UserController {
 		String oldPassword = oldUserInfo.getPassword();
 		if(oldPassword.equals(userInfo.getPassword())){
 			userInfo.setPassword(userInfo.getNewPassword());			//将密码修改为新的密码
-			userInfo.setUpateDate(new Date());  						//设置修改时间
+			userInfo.setUpdateDate(new Date());  						//设置修改时间
 			userInfoService.updateByPrimaryKeySelective(userInfo);
 			
 			httpSession.invalidate(); 		//修改密码后，要求重新登录

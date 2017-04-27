@@ -1,14 +1,20 @@
 package com.runzhen.user.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.runzhen.common.util.CommonUtil;
+import com.runzhen.user.UserConstant;
 import com.runzhen.user.domain.RoleInfo;
 import com.runzhen.user.service.IRoleInfoService;
 
@@ -20,7 +26,7 @@ public class RoleController {
 	private IRoleInfoService roleInfoService;
 	
 	/*
-	 * 功能：显示用户列表
+	 * 功能：显示角色列表
 	*/
 	@RequestMapping("/list")
 	@ResponseBody
@@ -31,5 +37,40 @@ public class RoleController {
 		result.put("rows", roleList);
 		result.put("total", total);
 		return result;
+	}
+	
+	/*
+	 * 功能：显示角色列表
+	*/
+	@RequestMapping("/save")
+	@ResponseBody
+	public Map<String,String> saveRoleInfo(RoleInfo record,HttpSession httpSession){
+		Map<String,String> resultMap = CommonUtil.getReturnMap();
+		
+		String loginUser = String.valueOf((httpSession.getAttribute("userId")));		//登录人
+		Integer roleId = record.getRoleId();
+		if(roleId == null){
+			/* 查询是否已有相同角色编码的记录 */
+			RoleInfo info = new RoleInfo();
+			info.setRoleCode(record.getRoleCode());
+			List<RoleInfo> roleList = roleInfoService.findByInfo(info);
+			if(!CollectionUtils.isEmpty(roleList)){
+				resultMap.put(CommonUtil.RESULT_MESSAGE, UserConstant.INSERT_ROLE_RESULT_FAILD);
+				return resultMap;
+			}
+			
+			record.setCreateUser(loginUser);		//设置创建人
+			record.setCreateDate(new Date());		//设置创建日期
+			roleInfoService.insert(record);
+		}else{
+			record.setUpdateUser(loginUser);		//设置修改人
+			record.setUpdateDate(new Date());		//设置修改日期
+			roleInfoService.updateByPrimaryKeySelective(record);
+		}
+		
+		resultMap.put(CommonUtil.RESULT_CODE, CommonUtil.RESULT_STATUS_SUCCESS);
+		resultMap.put(CommonUtil.RESULT_MESSAGE, UserConstant.SAVE_RESULT_SUCCESS);
+		
+		return resultMap;
 	}
 }

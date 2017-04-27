@@ -12,8 +12,8 @@ public class UserConstant {
 	public static String LOGIN_RESULT_PASSWORD_NOT_CORRECT="密码不正确!";
 	public static String LOGIN_RESULT_EXCEPTION="登录异常!";
 	
-	public static String USER_ACTIVITE_ON = "Y";		//有效
-	public static String USER_ACTIVITE_OFF = "N";		//无效
+	public static String ACTIVITE_ON = "Y";		//有效
+	public static String ACTIVITE_OFF = "N";		//无效
 	
 	public static String LOGOUT_RESULT_SUCCESS="注销成功!";
 	
@@ -22,5 +22,10 @@ public class UserConstant {
 	
 	public static String PASSWORD_UPDATE_RESULT_SUCCESS="密码修改成功,请重新登录!";
 	public static String PASSWORD_UPDATE_RESULT_ERROR="密码修改失败,原密码输入不正确!";
+	
+	public static String SAVE_RESULT_ERROR="保存失败!";
+	public static String SAVE_RESULT_SUCCESS="保存成功!";
+	
+	public static String INSERT_ROLE_RESULT_FAILD="新增失败,已存在相同编码的角色!";
 	
 }

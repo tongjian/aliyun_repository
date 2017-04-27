@@ -22,7 +22,7 @@
 	
 	<sql id="Base_Column_List">
 	  user_id, phone_number, user_code, user_name, email, qq, password, address, sex, create_date, 
-	  birth_date, remark, upate_date, upate_user, active
+	  birth_date, remark, update_date, update_user, active
 	</sql>
 	
 	<sql id="Sql_Where">
@@ -82,13 +82,13 @@
 	    user_name, email, qq, 
 	    password, address, sex, 
 	    create_date, birth_date, remark, 
-	    upate_date, upate_user, active
+	    update_date, update_user, active
 	    )
 	  values (#{userId,jdbcType=INTEGER}, #{phoneNumber,jdbcType=VARCHAR}, #{userCode,jdbcType=VARCHAR}, 
 	    #{userName,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, 
 	    #{password,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, 
 	    #{createDate}, #{birthDate}, #{remark,jdbcType=VARCHAR}, 
-	    #{upateDate}, #{upateUser,jdbcType=VARCHAR}, #{active,jdbcType=VARCHAR}
+	    #{updateDate}, #{updateUser,jdbcType=VARCHAR}, #{active,jdbcType=VARCHAR}
 	    )
 	</insert>
 	
@@ -131,11 +131,11 @@
 	    <if test="remark != null">
 	      remark,
 	    </if>
-	    <if test="upateDate != null">
-	      upate_date,
+	    <if test="updateDate != null">
+	      update_date,
 	    </if>
-	    <if test="upateUser != null">
-	      upate_user,
+	    <if test="updateUser != null">
+	      update_user,
 	    </if>
 	    <if test="active != null">
 	      active,
@@ -178,11 +178,11 @@
 	    <if test="remark != null">
 	      #{remark,jdbcType=VARCHAR},
 	    </if>
-	    <if test="upateDate != null">
-	      #{upateDate},
+	    <if test="updateDate != null">
+	      #{updateDate},
 	    </if>
-	    <if test="upateUser != null">
-	      #{upateUser,jdbcType=VARCHAR},
+	    <if test="updateUser != null">
+	      #{updateUser,jdbcType=VARCHAR},
 	    </if>
 	    <if test="active != null">
 	      #{active,jdbcType=VARCHAR},
@@ -226,11 +226,11 @@
 	    <if test="remark != null">
 	      remark = #{remark,jdbcType=VARCHAR},
 	    </if>
-	    <if test="upateDate != null">
-	      upate_date = #{upateDate},
+	    <if test="updateDate != null">
+	      update_date = #{updateDate},
 	    </if>
-	    <if test="upateUser != null">
-	      upate_user = #{upateUser,jdbcType=VARCHAR},
+	    <if test="updateUser != null">
+	      update_user = #{updateUser,jdbcType=VARCHAR},
 	    </if>
 	    <if test="active != null">
 	      active = #{active,jdbcType=VARCHAR},
@@ -252,8 +252,8 @@
 	    create_date = #{createDate},
 	    birth_date = #{birthDate},
 	    remark = #{remark,jdbcType=VARCHAR},
-	    upate_date = #{upateDate},
-	    upate_user = #{upateUser,jdbcType=VARCHAR},
+	    update_date = #{updateDate},
+	    update_user = #{updateUser,jdbcType=VARCHAR},
 	    active = #{active,jdbcType=VARCHAR}
 	  where user_id = #{userId,jdbcType=INTEGER}
 	</update>

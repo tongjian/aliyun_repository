@@ -8,13 +8,13 @@
     <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
     <result column="create_user" jdbcType="VARCHAR" property="createUser" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
-    <result column="upate_date" jdbcType="TIMESTAMP" property="upateDate" />
-    <result column="upate_user" jdbcType="VARCHAR" property="upateUser" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
     <result column="active" jdbcType="VARCHAR" property="active" />
   </resultMap>
   
   <sql id="Base_Column_List">
-    role_id, role_code, role_name, create_date, create_user, remark, upate_date, upate_user, 
+    role_id, role_code, role_name, create_date, create_user, remark, update_date, update_user, 
     active
   </sql>
   
@@ -23,13 +23,13 @@
 	   <if test="roleId != null">
 	     and role_id = #{roleId}
 	   </if>
-	   <if test="roleCode != null">
+	   <if test="roleCode != null and roleCode != ''">
 	     and role_code = #{roleCode}
 	   </if>
-	   <if test="roleName != null">
+	   <if test="roleName != null and roleName != ''">
 	     and role_name = #{roleName}
 	   </if>
-	   <if test="active != null">
+	   <if test="active != null and active != ''">
 	     and active = #{active}
 	   </if>
 	</where>
@@ -48,13 +48,22 @@
 	  from role_info
 	  <include refid="Sql_Where" />
 	  order by create_date desc
-	  limit #{offset},#{limit}
+	  <if test="offset != null and limit != null">
+      	limit #{offset},#{limit}
+      </if>
 	</select>
 	
 	<select id="getTotal" parameterType="com.runzhen.user.domain.RoleInfo" resultType="java.lang.Integer">
 	  select count(1)
 	  from role_info
 	  <include refid="Sql_Where" />
+	</select>
+	
+	<select id="findByInfo" parameterType="com.runzhen.user.domain.RoleInfo" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column_List" />
+		from role_info
+		<include refid="Sql_Where" />
 	</select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -65,11 +74,11 @@
   <insert id="insert" parameterType="com.runzhen.user.domain.RoleInfo">
     insert into role_info (role_id, role_code, role_name, 
       create_date, create_user, remark, 
-      upate_date, upate_user, active
+      update_date, update_user, active
       )
     values (#{roleId,jdbcType=INTEGER}, #{roleCode,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR}, 
       #{createDate,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
-      #{upateDate,jdbcType=TIMESTAMP}, #{upateUser,jdbcType=VARCHAR}, #{active,jdbcType=VARCHAR}
+      #{updateDate,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}, #{active,jdbcType=VARCHAR}
       )
   </insert>
   
@@ -94,11 +103,11 @@
       <if test="remark != null">
         remark,
       </if>
-      <if test="upateDate != null">
-        upate_date,
+      <if test="updateDate != null">
+        update_date,
       </if>
-      <if test="upateUser != null">
-        upate_user,
+      <if test="updateUser != null">
+        update_user,
       </if>
       <if test="active != null">
         active,
@@ -123,11 +132,11 @@
       <if test="remark != null">
         #{remark,jdbcType=VARCHAR},
       </if>
-      <if test="upateDate != null">
-        #{upateDate,jdbcType=TIMESTAMP},
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="upateUser != null">
-        #{upateUser,jdbcType=VARCHAR},
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
       </if>
       <if test="active != null">
         #{active,jdbcType=VARCHAR},
@@ -153,11 +162,11 @@
       <if test="remark != null">
         remark = #{remark,jdbcType=VARCHAR},
       </if>
-      <if test="upateDate != null">
-        upate_date = #{upateDate,jdbcType=TIMESTAMP},
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="upateUser != null">
-        upate_user = #{upateUser,jdbcType=VARCHAR},
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
       </if>
       <if test="active != null">
         active = #{active,jdbcType=VARCHAR},
@@ -173,8 +182,8 @@
       create_date = #{createDate,jdbcType=TIMESTAMP},
       create_user = #{createUser,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},
-      upate_date = #{upateDate,jdbcType=TIMESTAMP},
-      upate_user = #{upateUser,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
       active = #{active,jdbcType=VARCHAR}
     where role_id = #{roleId,jdbcType=INTEGER}
   </update>

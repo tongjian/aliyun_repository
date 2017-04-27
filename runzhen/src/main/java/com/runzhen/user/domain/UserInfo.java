@@ -31,9 +31,9 @@ public class UserInfo extends BaseInfo{
 
     private String remark;
 
-    private Date upateDate;
+    private Date updateDate;
 
-    private String upateUser;
+    private String updateUser;
 
     private String active;
 
@@ -133,20 +133,20 @@ public class UserInfo extends BaseInfo{
         this.remark = remark == null ? null : remark.trim();
     }
 
-    public Date getUpateDate() {
-        return upateDate;
+    public Date getUpdateDate() {
+        return updateDate;
     }
 
-    public void setUpateDate(Date upateDate) {
-        this.upateDate = upateDate;
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
     }
 
-    public String getUpateUser() {
-        return upateUser;
+    public String getUpdateUser() {
+        return updateUser;
     }
 
-    public void setUpateUser(String upateUser) {
-        this.upateUser = upateUser == null ? null : upateUser.trim();
+    public void setUpdateUser(String updateUser) {
+        this.updateUser = updateUser == null ? null : updateUser.trim();
     }
 
     public String getActive() {
