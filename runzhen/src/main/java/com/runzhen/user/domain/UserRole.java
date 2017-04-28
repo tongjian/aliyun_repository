@@ -1,25 +1,23 @@
 package com.runzhen.user.domain;
 
-import java.util.Date;
+import com.runzhen.common.domain.BaseInfo;
 
-public class UserRole {
+public class UserRole extends BaseInfo {
     private Integer id;
 
     private String userId;
 
     private String roleId;
 
-    private Date createDate;
-
-    private String createUser;
-
-    private Date updateDate;
-
-    private String updateUser;
-
-    private String active;
-
     private String remark;
+    
+    private String userCode;
+
+    private String userName;
+    
+    private String roleCode;
+
+    private String roleName;
 
     public Integer getId() {
         return id;
@@ -45,46 +43,6 @@ public class UserRole {
         this.roleId = roleId == null ? null : roleId.trim();
     }
 
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
-    public String getCreateUser() {
-        return createUser;
-    }
-
-    public void setCreateUser(String createUser) {
-        this.createUser = createUser == null ? null : createUser.trim();
-    }
-
-    public Date getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
-    }
-
-    public String getUpdateUser() {
-        return updateUser;
-    }
-
-    public void setUpdateUser(String updateUser) {
-        this.updateUser = updateUser == null ? null : updateUser.trim();
-    }
-
-    public String getActive() {
-        return active;
-    }
-
-    public void setActive(String active) {
-        this.active = active == null ? null : active.trim();
-    }
-
     public String getRemark() {
         return remark;
     }
@@ -92,4 +50,36 @@ public class UserRole {
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
     }
+
+	public String getUserCode() {
+		return userCode;
+	}
+
+	public void setUserCode(String userCode) {
+		this.userCode = userCode;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getRoleCode() {
+		return roleCode;
+	}
+
+	public void setRoleCode(String roleCode) {
+		this.roleCode = roleCode;
+	}
+
+	public String getRoleName() {
+		return roleName;
+	}
+
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
 }

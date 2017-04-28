@@ -31,10 +31,10 @@
 		     and user_id = #{userId}
 		   </if>
 		   <if test="userCode != null">
-		     and user_code = #{userCode}
+		     and user_code like '%${userCode}%'
 		   </if>
 		   <if test="userName != null">
-		     and user_name = #{userName}
+		     and user_name like '%${userName}%'
 		   </if>
 		   <if test="active != null">
 		     and active = #{active}

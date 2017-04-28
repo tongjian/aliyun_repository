@@ -211,8 +211,12 @@
      </div>
 <script src="<%=contextPath%>/js/jquery-3.2.1.js"></script>
 <script src="<%=contextPath%>/js/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="<%=contextPath%>/js/bootstrap-table-develop/dist/bootstrap-table.min.js"></script>
+<script src="<%=contextPath%>/js/bootstrap-table-develop/dist/locale/bootstrap-table-zh-CN.js"></script>
 <script src="<%=contextPath%>/js/bootstrapvalidator-0.4.5/dist/js/bootstrapValidator.js"></script>
 <script src="<%=contextPath%>/js/bootstrap3-dialog-master/dist/js/bootstrap-dialog.min.js"></script>
+<script src="<%=contextPath%>/js/json2.js"></script>
+<script src="<%=contextPath%>/js/common.js"></script>
 <script type="text/javascript">  
 
 //单击“控制台”

@@ -1,14 +1,11 @@
-package com.runzhen.user.dao;
+package com.runzhen.user.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
-
 import com.runzhen.user.domain.UserRole;
 
-@Repository
-public interface UserRoleMapper {
-    int deleteByPrimaryKey(Integer id);
+public interface IUserRoleService {
+	int deleteByPrimaryKey(Integer id);
 
     int insert(UserRole record);
 

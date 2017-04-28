@@ -34,8 +34,8 @@
 	    </thead>
 	</table>
 	
-<script src="../js/jquery-1.12.4.min.js"></script>
-<script src="../js/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<!-- <script src="../js/jquery-1.12.4.min.js"></script>
+<script src="../js/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script> -->
 <script src="../js/bootstrap-table-develop/dist/bootstrap-table.min.js"></script>
 <script src="../js/bootstrap-table-develop/dist/locale/bootstrap-table-zh-CN.js"></script>
 <script src="../js/json2.js"></script>

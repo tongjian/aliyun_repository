@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>个人信息</title>
-<link rel="stylesheet" href="../js/bootstrap-datepicker-master/dist/css/bootstrap-datepicker.min.css">
+<link rel="stylesheet" href="../js/bootstrap-datepicker-master/dist/css/bootstrap-datepicker3.min.css">
 </head>
 <body>
 <div class="form-horizontal">
@@ -79,8 +79,8 @@
 	</form>
 </div>
 
-<script src="../js/jquery-1.12.4.min.js"></script>
-<script src="../js/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<!-- <script src="../js/jquery-1.12.4.min.js"></script>
+<script src="../js/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script> -->
 <script src="../js/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js"></script>
 <script src="../js/bootstrap-datepicker-master/dist/locales/bootstrap-datepicker.zh-CN.min.js"></script>
 <script type="text/javascript">
