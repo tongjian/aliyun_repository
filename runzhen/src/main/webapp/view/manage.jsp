@@ -14,33 +14,20 @@
     <title>控制台</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../js/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">							<!-- 基本样式 -->
-    <link href="../js/bootstrap-table-develop/dist/bootstrap-table.min.css" rel="stylesheet">				<!-- 表格样式 -->
-	<link href="../js/bootstrapvalidator-0.4.5/dist/css/bootstrapValidator.min.css" rel="stylesheet">		<!-- 表单验证样式 -->
-	<link href="../js/bootstrap3-dialog-master/dist/css/bootstrap-dialog.min.css" rel="stylesheet">			<!-- 对话框样式 -->
-	<link href="../js/bootstrap-datepicker-master/dist/css/bootstrap-datepicker3.min.css" rel="stylesheet">		<!-- 日期框样式 -->
+    <link href="<%=contextPath %>/js/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">							<!-- 基本样式 -->
+    <link href="<%=contextPath %>/js/bootstrap-table-develop/dist/bootstrap-table.min.css" rel="stylesheet">				<!-- 表格样式 -->
+	<link href="<%=contextPath %>/js/bootstrapvalidator-0.4.5/dist/css/bootstrapValidator.min.css" rel="stylesheet">		<!-- 表单验证样式 -->
+	<link href="<%=contextPath %>/js/bootstrap3-dialog-master/dist/css/bootstrap-dialog.min.css" rel="stylesheet">			<!-- 对话框样式 -->
+	<link href="<%=contextPath %>/js/bootstrap-datepicker-master/dist/css/bootstrap-datepicker3.min.css" rel="stylesheet">		<!-- 日期框样式 -->
     
-    <link rel="stylesheet" href="../js/lobipanel-master/lib/jquery-ui.min.css"/>			<!-- jquery-ui样式 -->
-	<link rel="stylesheet" href="../js/lobipanel-master/dist/css/lobipanel.min.css"/>		<!-- 面板样式 -->
+    <link href="<%=contextPath %>/js/lobipanel-master/lib/jquery-ui.min.css" rel="stylesheet" >			<!-- jquery-ui样式 -->
+	<link href="<%=contextPath %>/js/lobipanel-master/dist/css/lobipanel.min.css" rel="stylesheet" >		<!-- 面板样式 -->
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="../css/dashboard.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../js/ie-emulation-modes-warning.js"></script>
-    
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="../js/html5shiv.min.js"></script>
-	  <script src="../js/respond.min.js"></script>
-    <![endif]-->
+    <link href="<%=contextPath %>/css/dashboard.css" rel="stylesheet">
   </head>
 
   <body>
-
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -92,26 +79,23 @@
       </div>
     </div>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../js/jquery-1.12.4.min.js"></script>		<!-- jquery  -->
-	<script src="../js/lobipanel-master/lib/jquery-ui.min.js"></script>			<!-- jquery-ui -->
-	<script src="../js/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>		<!-- bootstrap -->
-	<script src="../js/bootstrap-table-develop/dist/bootstrap-table.min.js"></script>					<!-- bootstrap表格插件 -->
-	<script src="../js/bootstrap-table-develop/dist/locale/bootstrap-table-zh-CN.js"></script>
-	<script src="../js/bootstrap3-dialog-master/dist/js/bootstrap-dialog.min.js"></script>				<!-- bootstrap对话框插件 -->
-	<script src="../js/bootstrapvalidator-0.4.5/dist/js/bootstrapValidator.js"></script>				<!-- bootstrap验证插件 -->
-	<script src="../js/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js"></script>		<!-- bootstrap日期插件 -->
-	<script src="../js/bootstrap-datepicker-master/dist/locales/bootstrap-datepicker.zh-CN.min.js"></script>
-	<script src="../js/lobipanel-master/dist/js/lobipanel.min.js"></script>		<!-- bootstrap面板插件 -->
-	<script src="../js/json2.js"></script>
-	<script src="../js/common.js"></script>
+	<script src="<%=contextPath %>/js/jquery-3.2.1.js"></script>
+    <%-- <script src="<%=contextPath %>/js/jquery-1.12.4.min.js"></script> --%>		<!-- jquery  -->
+	<%-- <script src="<%=contextPath %>/js/lobipanel-master/lib/jquery.1.11.min.js"></script> --%>			<!-- jquery-ui -->
+	<script src="<%=contextPath %>/js/lobipanel-master/lib/jquery-ui.min.js"></script>			<!-- jquery-ui -->
+	<script src="<%=contextPath %>/js/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>		<!-- bootstrap -->
+	<script src="<%=contextPath %>/js/bootstrap-table-develop/dist/bootstrap-table.min.js"></script>					<!-- bootstrap表格插件 -->
+	<script src="<%=contextPath %>/js/bootstrap-table-develop/dist/locale/bootstrap-table-zh-CN.js"></script>
+	<!-- bootstrap表格编辑插件 -->
+	<script src="<%=contextPath %>/js/bootstrap-table-develop/dist/extensions/editable/bootstrap-table-editable.min.js"></script>					
+	<script src="<%=contextPath %>/js/bootstrap3-dialog-master/dist/js/bootstrap-dialog.min.js"></script>				<!-- bootstrap对话框插件 -->
+	<script src="<%=contextPath %>/js/bootstrapvalidator-0.4.5/dist/js/bootstrapValidator.js"></script>				<!-- bootstrap验证插件 -->
+	<script src="<%=contextPath %>/js/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js"></script>		<!-- bootstrap日期插件 -->
+	<script src="<%=contextPath %>/js/bootstrap-datepicker-master/dist/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+	<script src="<%=contextPath %>/js/lobipanel-master/dist/js/lobipanel.min.js"></script>		<!-- bootstrap面板插件 -->
+	<script src="<%=contextPath %>/js/json2.js"></script>
+	<script src="<%=contextPath %>/js/common.js"></script>
 	
-    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-    <script src="../js/holder.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../js/ie10-viewport-bug-workaround.js"></script>
 <script type="text/javascript">  
 var panelInstance ;			//面板实例	
 
@@ -126,6 +110,8 @@ $( function() {
 	
 	panelInstance = $('#panel_div').data('lobiPanel');
 });
+<%-- 		loadUrl : '<%=contextPath%>/common/forward?page=user/userList' --%>
+		<%-- loadUrl : '<%=contextPath%>/common/forward?page=user/roleList' --%>
 
 /* 加载面板 */
 function manage_initPanel(title,forwardPage){
@@ -163,5 +149,5 @@ function logout_click(){
 }
 
 </script>
-  </body>
+</body>
 </html>

@@ -34,8 +34,8 @@ public class UserController {
 	*/
 	@RequestMapping("/register")
 	@ResponseBody
-	public Map<String,String> register(UserInfo userInfo){
-		Map<String,String> resultMap = CommonUtil.getReturnMap();
+	public Map<String,Object> register(UserInfo userInfo){
+		Map<String,Object> resultMap = CommonUtil.getReturnMap();
 		
 		if(userInfo == null){
 			resultMap.put(CommonUtil.RESULT_MESSAGE, UserConstant.REGISTER_RESULT_ERROR);
@@ -65,8 +65,8 @@ public class UserController {
 	*/
 	@RequestMapping("/login")
 	@ResponseBody
-	public Map<String,String> login(UserInfo userInfo,HttpSession httpSession){
-		Map<String,String> resultMap = CommonUtil.getReturnMap();
+	public Map<String,Object> login(UserInfo userInfo,HttpSession httpSession){
+		Map<String,Object> resultMap = CommonUtil.getReturnMap();
 		if(userInfo == null){
 			resultMap.put(CommonUtil.RESULT_MESSAGE, UserConstant.LOGIN_RESULT_ERROR);
 			return resultMap;
@@ -99,8 +99,8 @@ public class UserController {
 	*/
 	@RequestMapping("/logout")
 	@ResponseBody
-	public Map<String,String> logout(HttpSession httpSession){
-		Map<String,String> resultMap = CommonUtil.getReturnMap();
+	public Map<String,Object> logout(HttpSession httpSession){
+		Map<String,Object> resultMap = CommonUtil.getReturnMap();
 		httpSession.invalidate();
 		
 		resultMap.put(CommonUtil.RESULT_CODE, CommonUtil.RESULT_STATUS_SUCCESS);
@@ -147,8 +147,8 @@ public class UserController {
 	*/
 	@RequestMapping("/update")
 	@ResponseBody
-	public Map<String,String> update(UserInfo userInfo,HttpSession httpSession){
-		Map<String,String> resultMap = CommonUtil.getReturnMap();
+	public Map<String,Object> update(UserInfo userInfo,HttpSession httpSession){
+		Map<String,Object> resultMap = CommonUtil.getReturnMap();
 		
 		userInfo.setUpdateDate(new Date());  		//设置修改时间
 		userInfoService.updateByPrimaryKeySelective(userInfo);
@@ -163,8 +163,8 @@ public class UserController {
 	*/
 	@RequestMapping("/changePassword")
 	@ResponseBody
-	public Map<String,String> changePassword(UserInfo userInfo,HttpSession httpSession){
-		Map<String,String> resultMap = CommonUtil.getReturnMap();
+	public Map<String,Object> changePassword(UserInfo userInfo,HttpSession httpSession){
+		Map<String,Object> resultMap = CommonUtil.getReturnMap();
 		
 		UserInfo oldUserInfo = userInfoService.selectByPrimaryKey(userInfo.getUserId());
 		String oldPassword = oldUserInfo.getPassword();

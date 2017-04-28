@@ -44,8 +44,8 @@ public class RoleController {
 	*/
 	@RequestMapping("/save")
 	@ResponseBody
-	public Map<String,String> saveRoleInfo(RoleInfo record,HttpSession httpSession){
-		Map<String,String> resultMap = CommonUtil.getReturnMap();
+	public Map<String,Object> saveRoleInfo(RoleInfo record,HttpSession httpSession){
+		Map<String,Object> resultMap = CommonUtil.getReturnMap();
 		
 		String loginUser = String.valueOf((httpSession.getAttribute("userId")));		//登录人
 		Integer roleId = record.getRoleId();
@@ -70,6 +70,20 @@ public class RoleController {
 		
 		resultMap.put(CommonUtil.RESULT_CODE, CommonUtil.RESULT_STATUS_SUCCESS);
 		resultMap.put(CommonUtil.RESULT_MESSAGE, UserConstant.SAVE_RESULT_SUCCESS);
+		
+		return resultMap;
+	}
+	
+	/*
+	 * 功能：显示角色列表
+	*/
+	@RequestMapping("/findAll")
+	@ResponseBody
+	public Map<String,Object> findAllRole(RoleInfo record){
+		Map<String,Object> resultMap = CommonUtil.getReturnMap();
+		List<RoleInfo> roleList = roleInfoService.findByInfo(record);
+		resultMap.put(CommonUtil.RESULT_CODE, CommonUtil.RESULT_STATUS_SUCCESS);
+		resultMap.put(CommonUtil.RESULT_OBJECT, roleList);
 		
 		return resultMap;
 	}

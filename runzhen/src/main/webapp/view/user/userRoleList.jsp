@@ -62,76 +62,28 @@
 		<thead>
 		    <tr>
 		        <th data-field="" data-checkbox="true"></th>
-		        <th data-field="roleCode" data-align="center" data-sortable="true">角色编号</th>
-		        <th data-field="roleName" data-align="center" data-sortable="true">角色名称</th>
-		        <th data-field="userCode" data-align="center" data-sortable="true">用户编号</th>
-		        <th data-field="userName" data-align="center" data-sortable="true">用户名</th>
+		        <th data-field="roleCode" data-align="center" data-sortable="true" data-editable="true">角色编号</th>
+		        <th data-field="roleName" data-align="center" data-sortable="true" data-editable="true"
+		        	data-title="角色" data-type="select">角色名称</th>
+		        <th data-field="userCode" data-align="center" data-sortable="true" data-editable="true">用户编号</th>
+		        <th data-field="userName" data-align="center" data-sortable="true" data-editable="true"
+		        	data-title="用户">用户名</th>
 		        <th data-field="createDate" data-align="center" data-sortable="true" 
 		        	data-formatter="common_dateFormatter">创建日期</th>
-		        <th data-field="active" data-align="center" data-sortable="true"
+		        <th data-field="active" data-align="center" data-sortable="true" data-editable="true"
 		        	data-formatter="common_activeFormatter">是否有效</th>
-		        <th data-field="remark" data-align="center" data-sortable="true">说明</th>
+		        <th data-field="remark" data-align="center" data-sortable="true" data-editable="true">说明</th>
 		        <th data-field="id" data-align="center" data-sortable="true"
-		        	data-formatter="operate_formatter">操作</th>
+		        	data-formatter="userRoleList_operateFormatter">操作</th>
 		    </tr>
 	    </thead>
 	</table>
 	
-<script src="../js/bootstrap-table-develop/dist/bootstrap-table.min.js"></script>
+<!-- <script src="../js/bootstrap-table-develop/dist/bootstrap-table.min.js"></script>
 <script src="../js/bootstrap-table-develop/dist/locale/bootstrap-table-zh-CN.js"></script>
 <script src="../js/json2.js"></script>
-<script src="../js/common.js"></script>
+<script src="../js/common.js"></script> -->
 <script type="text/javascript">
-
-//登录验证
-$('#userRoleList_form').bootstrapValidator({
-	message : '角色输入信息验证不通过.',
-	fields : {
-		roleCode : {
-			validators : {
-				notEmpty : {
-					message : '角色编码不能为空.'
-				},
-				stringLength : {
-					max:10,
-					message : '角色编码长度不能超过10位.'
-				},
-				regexp : {
-					regexp: /^[a-zA-z0-9]+$/,
-					message : '角色编码必须由数字字母组成.'
-				}
-			}
-		},
-		roleName : {
-			validators : {
-				notEmpty : {
-					message : '角色名称不能为空.'
-				},
-				stringLength : {
-					max:15,
-					message : '角色名称长度不能超过15位.'
-				},
-				regexp : {
-					regexp: /^[\u4e00-\u9fa5_a-zA-Z0-9]+$/,
-					message : '角色名称必须由汉子数字字母组成.'
-				}
-			}
-		},
-		remark : {
-			validators : {
-				stringLength : {
-					max:100,
-					message : '说明长度不能超过100位.'
-				},
-				regexp : {
-					regexp: /^[\u4e00-\u9fa5_a-zA-z0-9]+$/,
-					message : '说明必须由汉子数字字母组成.'
-				}
-			}
-		}
-	}
-});
-
 
 /* 新增角色 */
 function userRoleList_append(){
@@ -175,8 +127,7 @@ function userRoleList_save(){
 /* 格式化'操作'列 */
 function userRoleList_operateFormatter(value,row,index){
 	var jsonRow = JSON.stringify(row);
-	return '<button type="button" onclick="userRoleList_editRole(\''+escape(jsonRow)+'\',\''+index+'\')" class="btn btn-primary btn-xs">修改</button>&nbsp;'+
-			'<button type="button" onclick="" class="btn btn-danger btn-xs">删除</button>';
+	return '<button type="button" onclick="userRoleList_editRole(\''+escape(jsonRow)+'\',\''+index+'\')" class="btn btn-primary btn-xs">修改</button>&nbsp;';
 }
 
 /* 修改角色信息 */

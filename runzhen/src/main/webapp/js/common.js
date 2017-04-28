@@ -31,3 +31,25 @@ function common_dateFormatter(value,row,index){
 function common_activeFormatter(value,row,index){
 	return value == 'Y' ? "有效":"无效";
 }
+
+/* 获取所有角色 */
+function common_getRoleList(){
+	var rolesArray = new Array();
+	if(rolesArray.length == 0){
+		$.ajax({
+			url:'user/findAll',
+			success:function(result){
+				if(result.resultCode == 'success'){
+					var roleList = result.resultObject;
+					var tj = "";
+					for(var i in roleList){
+						tj += i+":"+roleList[i]+"\n";
+					}
+					alert(tj);
+				}
+			}
+		});
+	}
+	
+	return rolesArray;
+}

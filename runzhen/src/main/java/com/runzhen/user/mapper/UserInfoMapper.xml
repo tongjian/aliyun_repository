@@ -30,13 +30,13 @@
 		   <if test="userId != null">
 		     and user_id = #{userId}
 		   </if>
-		   <if test="userCode != null">
+		   <if test="userCode != null and userCode != ''">
 		     and user_code like '%${userCode}%'
 		   </if>
-		   <if test="userName != null">
+		   <if test="userName != null and userName != ''">
 		     and user_name like '%${userName}%'
 		   </if>
-		   <if test="active != null">
+		   <if test="active != null and active != ''">
 		     and active = #{active}
 		   </if>
 		</where>
@@ -55,7 +55,9 @@
 	  from user_info
 	  <include refid="Sql_Where" />
 	  order by create_date desc
-	  limit #{offset},#{limit}
+	   <if test="offset != null and limit != null">
+      	limit #{offset},#{limit}
+      </if>
 	</select>
 	
 	<select id="getTotal" parameterType="com.runzhen.user.domain.UserInfo" resultType="java.lang.Integer">

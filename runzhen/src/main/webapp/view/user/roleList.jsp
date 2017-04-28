@@ -1,28 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
 <%
 	String contextPath = request.getContextPath();
 %>
+<!DOCTYPE html>
+<html>
+<head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>角色列表</title>
-<link href="../js/bootstrap-table-develop/dist/bootstrap-table.min.css" rel="stylesheet">
-<link href="../js/bootstrapvalidator-0.4.5/dist/css/bootstrapValidator.min.css" rel="stylesheet">
 </head>
 <body>
 	
     <form id="roleList_queryForm" role="form" class="form-horizontal" action="">
          <div class="form-group">
-            <label for="roleCode" class="control-label col-sm-1">角色编码:</label>
+            <label for="roleCode" class="control-label col-sm-2">角色编码:</label>
             <div class="col-sm-2">
             	<input id="roleList_queryParam_roleCode" name="roleCode" class="form-control" type="text" >
             </div>
-            <label for="roleName" class="control-label col-sm-1">角色名称</label>
+            <label for="roleName" class="control-label col-sm-2">角色名称:</label>
             <div class="col-sm-2">
             	<input id="roleList_queryParam_roleName" name="roleName" class="form-control" type="text" >
             </div>
-         	<label for="active" class="control-label col-sm-1">是否有效:</label>
+         	<label for="active" class="control-label col-sm-2">是否有效:</label>
          	<div class="col-sm-2">
 				<select id="roleList_queryParam_active" name="active" class="form-control">
 					<option value="">全部</option>
@@ -41,7 +39,7 @@
 		    <i class="glyphicon glyphicon-search"></i> 查询
 		</button>
 	</div>
-	<!-- 用户列表 -->
+	<!-- 角色列表 -->
 	<table id="roleList_table"
 		data-toolbar="#roleList_toolbar"
 		data-toolbar-align="right"
@@ -106,14 +104,10 @@
            </div>
        </div>
    </div>
-  
-<script src="../js/jquery-1.12.4.min.js"></script>
-<script src="../js/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<script src="../js/bootstrap-table-develop/dist/bootstrap-table.min.js"></script>
-<script src="../js/bootstrap-table-develop/dist/locale/bootstrap-table-zh-CN.js"></script>
-<script src="../js/bootstrapvalidator-0.4.5/dist/js/bootstrapValidator.js"></script>
-<script src="../js/json2.js"></script>
-<script src="../js/common.js"></script>
+
+<script src="<%=contextPath %>/js/bootstrap-table-develop/dist/bootstrap-table.min.js"></script>				
+<script src="<%=contextPath %>/js/bootstrap-table-develop/dist/locale/bootstrap-table-zh-CN.js"></script>
+<script src="<%=contextPath %>/js/bootstrapvalidator-0.4.5/dist/js/bootstrapValidator.js"></script>	
 <script type="text/javascript">
 //登录验证
 $('#roleList_form').bootstrapValidator({
