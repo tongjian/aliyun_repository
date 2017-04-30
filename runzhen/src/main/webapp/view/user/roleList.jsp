@@ -104,60 +104,19 @@
            </div>
        </div>
    </div>
+   
 
+<script src="<%=contextPath %>/js/jquery-1.12.4.min.js"></script>
+<script src="<%=contextPath %>/js/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="<%=contextPath %>/js/bootstrap-table-develop/dist/bootstrap-table.min.js"></script>				
 <script src="<%=contextPath %>/js/bootstrap-table-develop/dist/locale/bootstrap-table-zh-CN.js"></script>
 <script src="<%=contextPath %>/js/bootstrapvalidator-0.4.5/dist/js/bootstrapValidator.js"></script>	
+<script src="<%=contextPath %>/js/util.js"></script>
 <script type="text/javascript">
-//登录验证
-$('#roleList_form').bootstrapValidator({
-	message : '角色输入信息验证不通过.',
-	fields : {
-		roleCode : {
-			validators : {
-				notEmpty : {
-					message : '角色编码不能为空.'
-				},
-				stringLength : {
-					max:10,
-					message : '角色编码长度不能超过10位.'
-				},
-				regexp : {
-					regexp: /^[a-zA-z0-9]+$/,
-					message : '角色编码必须由数字字母组成.'
-				}
-			}
-		},
-		roleName : {
-			validators : {
-				notEmpty : {
-					message : '角色名称不能为空.'
-				},
-				stringLength : {
-					max:15,
-					message : '角色名称长度不能超过15位.'
-				},
-				regexp : {
-					regexp: /^[\u4e00-\u9fa5_a-zA-Z0-9]+$/,
-					message : '角色名称必须由汉子数字字母组成.'
-				}
-			}
-		},
-		remark : {
-			validators : {
-				stringLength : {
-					max:100,
-					message : '说明长度不能超过100位.'
-				},
-				regexp : {
-					regexp: /^[\u4e00-\u9fa5_a-zA-z0-9]+$/,
-					message : '说明必须由汉子数字字母组成.'
-				}
-			}
-		}
-	}
-});
 
+$(function(){
+	util_role_bootstrapValidator('roleList');			//角色验证
+});
 
 /* 新增角色 */
 function roleList_append(){

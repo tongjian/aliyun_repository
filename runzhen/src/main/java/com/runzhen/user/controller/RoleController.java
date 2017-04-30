@@ -32,8 +32,10 @@ public class RoleController {
 	@ResponseBody
 	public Map<String,Object> getRoleList(RoleInfo record){
 		Map<String,Object> result = new HashMap<String,Object>();
+		
 		List<RoleInfo> roleList = roleInfoService.selectByPage(record);
 		Integer total = roleInfoService.getTotal(record);
+		
 		result.put("rows", roleList);
 		result.put("total", total);
 		return result;
@@ -81,6 +83,8 @@ public class RoleController {
 	@ResponseBody
 	public Map<String,Object> findAllRole(RoleInfo record){
 		Map<String,Object> resultMap = CommonUtil.getReturnMap();
+		
+		record.setActive(UserConstant.ACTIVITE_ON);  					//获取有效的角色
 		List<RoleInfo> roleList = roleInfoService.findByInfo(record);
 		resultMap.put(CommonUtil.RESULT_CODE, CommonUtil.RESULT_STATUS_SUCCESS);
 		resultMap.put(CommonUtil.RESULT_OBJECT, roleList);

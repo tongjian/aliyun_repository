@@ -28,4 +28,6 @@ public class UserConstant {
 	
 	public static String INSERT_ROLE_RESULT_FAILD="新增失败,已存在相同编码的角色!";
 	
+	public static String DELETE_USER_RESULT_SUCCESS="用户删除成功!";
+	
 }

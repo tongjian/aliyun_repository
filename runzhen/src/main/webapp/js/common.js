@@ -27,6 +27,15 @@ function common_dateFormatter(value,row,index){
 	}
 }
 
+/* 默认格式化日期框 */
+$('.datepicker').datepicker({
+	language: "zh-CN",
+    autoclose: true,		//选中之后自动隐藏日期选择框
+    clearBtn: true,			//清除按钮
+    todayBtn: 'linked',		//今日按钮
+    format: "yyyy-mm-dd"	//日期格式
+});
+
 /* 格式化输出 */
 function common_activeFormatter(value,row,index){
 	return value == 'Y' ? "有效":"无效";
@@ -37,15 +46,17 @@ function common_getRoleList(){
 	var rolesArray = new Array();
 	if(rolesArray.length == 0){
 		$.ajax({
-			url:'user/findAll',
+			async: false,
+			url:'../role/findAll',
 			success:function(result){
 				if(result.resultCode == 'success'){
 					var roleList = result.resultObject;
-					var tj = "";
 					for(var i in roleList){
-						tj += i+":"+roleList[i]+"\n";
+						var roleJson = {};
+						roleJson.text = roleList[i].roleId;
+						roleJson.value = roleList[i].roleName;
+						rolesArray.push(roleJson);
 					}
-					alert(tj);
 				}
 			}
 		});

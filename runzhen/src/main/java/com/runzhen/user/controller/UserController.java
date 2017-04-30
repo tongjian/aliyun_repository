@@ -183,4 +183,22 @@ public class UserController {
 		
 		return resultMap;
 	}
+	
+	/*
+	 * 功能：删除用户，用户置为失效，不做物理删除
+	*/
+	@RequestMapping("/deleteUser")
+	@ResponseBody
+	public Map<String,Object> deleteUser(Integer userId){
+		Map<String,Object> resultMap = CommonUtil.getReturnMap();
+		
+		UserInfo info = new UserInfo();
+		info.setUserId(userId);
+		info.setActive(UserConstant.ACTIVITE_OFF);
+		userInfoService.updateByPrimaryKeySelective(info);
+		
+		resultMap.put(CommonUtil.RESULT_CODE, CommonUtil.RESULT_STATUS_SUCCESS);
+		resultMap.put(CommonUtil.RESULT_MESSAGE, UserConstant.DELETE_USER_RESULT_SUCCESS);		//修改成功
+		return resultMap;
+	}
 }
