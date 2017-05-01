@@ -16,13 +16,13 @@
     <!-- Bootstrap core CSS -->
     <link href="<%=contextPath %>/js/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">							<!-- 基本样式 -->
     <link href="<%=contextPath %>/js/bootstrap-table-develop/dist/bootstrap-table.min.css" rel="stylesheet">				<!-- 表格样式 -->
-	<link href="<%=contextPath %>/js/x-editable-develop/dist/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
 	<link href="<%=contextPath %>/js/bootstrapvalidator-0.4.5/dist/css/bootstrapValidator.min.css" rel="stylesheet">		<!-- 表单验证样式 -->
 	<link href="<%=contextPath %>/js/bootstrap3-dialog-master/dist/css/bootstrap-dialog.min.css" rel="stylesheet">			<!-- 对话框样式 -->
 	<link href="<%=contextPath %>/js/bootstrap-datepicker-master/dist/css/bootstrap-datepicker3.min.css" rel="stylesheet">		<!-- 日期框样式 -->
     
     <link href="<%=contextPath %>/js/lobipanel-master/lib/jquery-ui.min.css" rel="stylesheet" >			<!-- jquery-ui样式 -->
 	<link href="<%=contextPath %>/js/lobipanel-master/dist/css/lobipanel.min.css" rel="stylesheet" >		<!-- 面板样式 -->
+	<link href="<%=contextPath %>/js/select2-master/dist/css/select2.css" rel="stylesheet" >		<!-- 面板样式 -->
 
     <!-- Custom styles for this template -->
     <link href="<%=contextPath %>/css/dashboard.css" rel="stylesheet">
@@ -55,7 +55,7 @@
           <ul class="nav nav-sidebar">
             <li><a href="#" onclick="manage_initPanel('用户管理','user/userList')" class="active">用户管理</a></li>
             <li><a href="#" onclick="manage_initPanel('角色管理','user/roleList')">角色管理</a></li>
-            <li><a href="#" onclick="manage_initPanel('用户角色配置','user/userRoleList')">用户角色配置</a></li>
+            <!-- <li><a href="#" onclick="manage_initPanel('用户角色配置','user/userRoleList')">用户角色配置</a></li> -->
             <li><a href="#" onclick="manage_initPanel('个人信息','user/userEdit')">个人信息</a></li>
             <li><a href="#" onclick="manage_initPanel('密码修改','user/changePassword')">修改密码</a></li>
           </ul>
@@ -81,20 +81,22 @@
       </div>
     </div>
 
-	<script src="<%=contextPath %>/js/jquery-3.2.1.js"></script>
-    <%-- <script src="<%=contextPath %>/js/jquery-1.12.4.min.js"></script> --%>		<!-- jquery  -->
+	<%-- <script src="<%=contextPath %>/js/jquery-3.2.1.js"></script> --%>
+    <script src="<%=contextPath %>/js/jquery-1.12.4.min.js"></script>		<!-- jquery  -->
+	
 	<script src="<%=contextPath %>/js/lobipanel-master/lib/jquery-ui.min.js"></script>			<!-- jquery-ui -->
 	<script src="<%=contextPath %>/js/bootstrap-3.3.7-dist/js/bootstrap.js"></script>		<!-- bootstrap -->
 	<script src="<%=contextPath %>/js/bootstrap-table-develop/dist/bootstrap-table.js"></script>					<!-- bootstrap表格插件 -->
 	<script src="<%=contextPath %>/js/bootstrap-table-develop/dist/locale/bootstrap-table-zh-CN.js"></script>
 	<!-- bootstrap表格编辑插件 -->
 	<script src="<%=contextPath %>/js/bootstrap-table-develop/dist/extensions/editable/bootstrap-table-editable.js"></script>	
-	<script src="<%=contextPath %>/js/x-editable-develop/dist/bootstrap3-editable/js/bootstrap-editable.js"></script>				
 	<script src="<%=contextPath %>/js/bootstrap3-dialog-master/dist/js/bootstrap-dialog.js"></script>				<!-- bootstrap对话框插件 -->
 	<script src="<%=contextPath %>/js/bootstrapvalidator-0.4.5/dist/js/bootstrapValidator.js"></script>				<!-- bootstrap验证插件 -->
 	<script src="<%=contextPath %>/js/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js"></script>		<!-- bootstrap日期插件 -->
 	<script src="<%=contextPath %>/js/bootstrap-datepicker-master/dist/locales/bootstrap-datepicker.zh-CN.min.js"></script>
-	<script src="<%=contextPath %>/js/lobipanel-master/dist/js/lobipanel.min.js"></script>		<!-- bootstrap面板插件 -->
+	<script src="<%=contextPath %>/js/lobipanel-master/dist/js/lobipanel.min.js"></script>				<!-- bootstrap面板插件 -->
+	<script src="<%=contextPath %>/js/select2-master/dist/js/select2.js"></script>						<!-- bootstrap面板插件 -->
+	
 	<script src="<%=contextPath %>/js/json2.js"></script>
 	<script src="<%=contextPath %>/js/common.js"></script>
 	

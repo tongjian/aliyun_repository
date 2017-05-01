@@ -53,8 +53,8 @@ function common_getRoleList(){
 					var roleList = result.resultObject;
 					for(var i in roleList){
 						var roleJson = {};
-						roleJson.text = roleList[i].roleId;
-						roleJson.value = roleList[i].roleName;
+						roleJson.id = roleList[i].roleId;
+						roleJson.text = roleList[i].roleName;
 						rolesArray.push(roleJson);
 					}
 				}

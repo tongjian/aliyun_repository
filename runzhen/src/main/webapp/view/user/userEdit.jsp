@@ -60,8 +60,13 @@
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-2">地址:</label>
-		    <div class="col-sm-5">
+		    <div class="col-sm-3">
 		        <input id="userEdit_address" name="address" class="form-control" type="text" />
+		    </div>
+			<label class="control-label col-sm-2">角色:</label>
+		    <div class="col-sm-3">
+		        <select id="userEdit_roles" class="form-control" data-placeholder="请选择角色..." 
+		        	multiple="multiple"></select>
 		    </div>
 		</div>
 		<div class="form-group">
@@ -83,13 +88,19 @@
 <script src="<%=contextPath %>/js/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js"></script>
 <script src="<%=contextPath %>/js/bootstrap-datepicker-master/dist/locales/bootstrap-datepicker.zh-CN.min.js"></script>
 <script src="<%=contextPath %>/js/bootstrapvalidator-0.4.5/dist/js/bootstrapValidator.js"></script>	
+<script src="<%=contextPath %>/js/select2-master/dist/js/select2.js"></script>
 <script src="<%=contextPath %>/js/common.js"></script>
 <script src="<%=contextPath %>/js/util.js"></script>
 <script type="text/javascript">
 
 //页面初始化
 $( function() {
-	util_user_bootstrapValidator('userEdit');			//初始化验证
+	util_user_bootstrapValidator('userEdit');			//初始化表单验证条件
+	
+	//初始化'角色'下拉框 
+	$("#userEdit_roles").select2( { 
+		data : common_getRoleList()
+	} );
 	
 	var userId = $("#userEdit_userId").val();
 	if(userId != '' && userId != undefined){
@@ -110,6 +121,12 @@ $( function() {
 
 //保存表单数据
 function userEdit_save(){
+	/* $("#userEdit_roles").val([1,2]).trigger("change");
+	
+	var t = $("#userEdit_roles").val();
+	alert("3:"+t);
+	return ; */
+	
 	var userId = $("#userEdit_userId").val();
 	if(userId != '' && userId != undefined){
 		util_form_save('userEdit','<%=contextPath%>/user/update',util_user_getFormData('userEdit'));
