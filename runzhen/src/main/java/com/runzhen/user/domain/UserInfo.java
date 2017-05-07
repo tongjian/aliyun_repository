@@ -1,7 +1,6 @@
 package com.runzhen.user.domain;
 
 import java.util.Date;
-
 import com.runzhen.common.domain.BaseInfo;
 
 public class UserInfo extends BaseInfo{
@@ -28,7 +27,7 @@ public class UserInfo extends BaseInfo{
     private Date birthDate;
 
     private String remark;
-
+    
     public Integer getUserId() {
         return userId;
     }
@@ -124,4 +123,5 @@ public class UserInfo extends BaseInfo{
 	public void setNewPassword(String newPassword) {
 		this.newPassword = newPassword;
 	}
+
 }

@@ -13,12 +13,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.runzhen.common.util.CommonUtil;
 import com.runzhen.user.UserConstant;
 import com.runzhen.user.domain.UserInfo;
+import com.runzhen.user.domain.UserRole;
 import com.runzhen.user.service.IUserInfoService;
+import com.runzhen.user.service.IUserRoleService;
 
 @Controller
 @RequestMapping("/user")
@@ -28,6 +31,8 @@ public class UserController {
 
 	@Autowired
 	private IUserInfoService userInfoService;
+	@Autowired
+	private IUserRoleService userRoleService;
 	
 	/*
 	 * 功能：注册
@@ -137,9 +142,20 @@ public class UserController {
 	 */
 	@RequestMapping("/selectByPrimaryKey")
 	@ResponseBody
-	public UserInfo selectByPrimaryKey(Integer userId){
+	public Map<String,Object> selectByPrimaryKey(Integer userId){
+		Map<String,Object> resultMap = CommonUtil.getReturnMap();
+		
 		UserInfo info = userInfoService.selectByPrimaryKey(userId);
-		return info;
+		
+		UserRole userRole = new UserRole();
+		userRole.setActive(UserConstant.ACTIVITE_ON);
+		userRole.setUserId(String.valueOf(userId));
+		List<Integer> roleIds = userRoleService.findRoleIdsByInfo(userRole);
+		
+		resultMap.put(CommonUtil.RESULT_CODE, CommonUtil.RESULT_STATUS_SUCCESS);
+		resultMap.put(UserConstant.USERINFO, info);
+		resultMap.put(UserConstant.ROLEIDS, roleIds);
+		return resultMap;
 	}
 	
 	/*
@@ -147,11 +163,21 @@ public class UserController {
 	*/
 	@RequestMapping("/update")
 	@ResponseBody
-	public Map<String,Object> update(UserInfo userInfo,HttpSession httpSession){
+	public Map<String,Object> update(UserInfo userInfo,@RequestParam(value = "roleIds[]") Integer[] roleIds,HttpSession httpSession){
 		Map<String,Object> resultMap = CommonUtil.getReturnMap();
+		if(userInfo == null || userInfo.getUserId() == null){
+			resultMap.put(CommonUtil.RESULT_MESSAGE, UserConstant.UPDATE_RESULT_ERROR);
+			return resultMap;
+		}
 		
+		//修改用户基本信息
 		userInfo.setUpdateDate(new Date());  		//设置修改时间
 		userInfoService.updateByPrimaryKeySelective(userInfo);
+		
+		//修改用户的角色配置
+		if(roleIds != null){
+			userRoleService.changeUserRoleReleative(userInfo,roleIds,httpSession);
+		}
 		
 		resultMap.put(CommonUtil.RESULT_CODE, CommonUtil.RESULT_STATUS_SUCCESS);
 		resultMap.put(CommonUtil.RESULT_MESSAGE, UserConstant.UPDATE_RESULT_SUCCESS);		//修改成功

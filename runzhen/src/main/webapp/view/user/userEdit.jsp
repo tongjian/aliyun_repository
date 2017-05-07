@@ -65,7 +65,7 @@
 		    </div>
 			<label class="control-label col-sm-2">角色:</label>
 		    <div class="col-sm-3">
-		        <select id="userEdit_roles" class="form-control" data-placeholder="请选择角色..." 
+		        <select id="userEdit_roleIds" class="form-control" data-placeholder="请选择角色..." 
 		        	multiple="multiple"></select>
 		    </div>
 		</div>
@@ -98,7 +98,7 @@ $( function() {
 	util_user_bootstrapValidator('userEdit');			//初始化表单验证条件
 	
 	//初始化'角色'下拉框 
-	$("#userEdit_roles").select2( { 
+	$("#userEdit_roleIds").select2( { 
 		data : common_getRoleList()
 	} );
 	
@@ -121,12 +121,6 @@ $( function() {
 
 //保存表单数据
 function userEdit_save(){
-	/* $("#userEdit_roles").val([1,2]).trigger("change");
-	
-	var t = $("#userEdit_roles").val();
-	alert("3:"+t);
-	return ; */
-	
 	var userId = $("#userEdit_userId").val();
 	if(userId != '' && userId != undefined){
 		util_form_save('userEdit','<%=contextPath%>/user/update',util_user_getFormData('userEdit'));

@@ -23,4 +23,12 @@ public interface UserRoleMapper {
     List<UserRole> selectByPage(UserRole record);
     
     int getTotal(UserRole record);
+    
+    List<UserRole> findByInfo(UserRole record);
+    
+    List<Integer> findRoleIdsByInfo(UserRole record);
+    
+    void batchInsertUserRole(List<UserRole> userRoleList);
+    
+    void batchDeleteUserRole(List<UserRole> userRoleList);
 }

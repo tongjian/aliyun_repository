@@ -100,33 +100,37 @@ function util_user_bootstrapValidator(formId){
 
 /* 给用户表单设置值 */
 function util_user_setFormData(formId,data){
-	$("#"+formId+"_userId").val(data.userId);					//用户Id
-	$("#"+formId+"_userCode").val(data.userCode);				//用户编号
-	$("#"+formId+"_userName").val(data.userName);				//用户中文名
-	$("#"+formId+"_phoneNumber").val(data.phoneNumber);			//用户手机号
-	$("#"+formId+"_qq").val(data.qq);							//用户QQ
-	$("#"+formId+"_email").val(data.email);						//email
-	$("#"+formId+"_birthDate").datepicker('setDate',new Date(data.birthDate));			//生日
-	$("#"+formId+"_sex").val(data.sex);							//性别
-	$("#"+formId+"_active").val(data.active);					//是否有效
-	$("#"+formId+"_address").val(data.address);					//地址
-	$("#"+formId+"_remark").val(data.remark);					//设置说明
+	var userInfo = data.userInfo;			//用户对象
+	var roleIds = data.roleIds;				//对应用户的角色列表
+	$("#"+formId+"_userId").val(userInfo.userId);					//用户Id
+	$("#"+formId+"_userCode").val(userInfo.userCode);				//用户编号
+	$("#"+formId+"_userName").val(userInfo.userName);				//用户中文名
+	$("#"+formId+"_phoneNumber").val(userInfo.phoneNumber);			//用户手机号
+	$("#"+formId+"_qq").val(userInfo.qq);							//用户QQ
+	$("#"+formId+"_email").val(userInfo.email);						//email
+	$("#"+formId+"_birthDate").datepicker('setDate',new Date(userInfo.birthDate));			//生日
+	$("#"+formId+"_sex").val(userInfo.sex);							//性别
+	$("#"+formId+"_active").val(userInfo.active);					//是否有效
+	$("#"+formId+"_address").val(userInfo.address);					//地址
+	$("#"+formId+"_remark").val(userInfo.remark);					//设置说明
+	$("#"+formId+"_roleIds").val(roleIds).trigger("change");
 }
 
 /* 获取用户表单值,返回json对象 */
 function util_user_getFormData(formId){
 	var userForm = {};
-	userForm.userId = $("#"+formId+"_userId").val(),
-	userForm.userCode = $("#"+formId+"_userCode").val(),
-	userForm.userName = $("#"+formId+"_userName").val(),
-	userForm.phoneNumber = $("#"+formId+"_phoneNumber").val(),
-	userForm.qq = $("#"+formId+"_qq").val(),
-	userForm.email = $("#"+formId+"_email").val(),
-	userForm.birthDate = $("#"+formId+"_birthDate").datepicker('getDate'),
-	userForm.sex = $("#"+formId+"_sex").val(),
-	userForm.active = $("#"+formId+"_active").val(),
-	userForm.address = $("#"+formId+"_address").val(),
-	userForm.remark = $("#"+formId+"_remark").val()
+	userForm.userId = $("#"+formId+"_userId").val();
+	userForm.userCode = $("#"+formId+"_userCode").val();
+	userForm.userName = $("#"+formId+"_userName").val();
+	userForm.phoneNumber = $("#"+formId+"_phoneNumber").val();
+	userForm.qq = $("#"+formId+"_qq").val();
+	userForm.email = $("#"+formId+"_email").val();
+	userForm.birthDate = $("#"+formId+"_birthDate").datepicker('getDate');
+	userForm.sex = $("#"+formId+"_sex").val();
+	userForm.active = $("#"+formId+"_active").val();
+	userForm.address = $("#"+formId+"_address").val();
+	userForm.remark = $("#"+formId+"_remark").val();
+	userForm.roleIds = $("#"+formId+"_roleIds").val();
 	
 	return userForm;
 }

@@ -30,4 +30,6 @@ public class UserConstant {
 	
 	public static String DELETE_USER_RESULT_SUCCESS="用户删除成功!";
 	
+	public static String USERINFO = "userInfo";
+	public static String ROLEIDS = "roleIds";
 }

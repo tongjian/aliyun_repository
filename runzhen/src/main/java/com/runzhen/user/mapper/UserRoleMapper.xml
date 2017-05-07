@@ -28,7 +28,7 @@
   <sql id="Sql_Where">
 	<where>
 	   <if test="userId != null">
-	     and ur.role_id = #{roleId}
+	     and ur.user_id = #{userId}
 	   </if>
 	   <if test="userCode != null and userCode != ''">
 	     and ui.user_code like '%${userCode}%'
@@ -56,6 +56,19 @@
     <include refid="Base_Column_List" />
     from user_role ur
     where ur.id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="findByInfo" parameterType="com.runzhen.user.domain.UserRole" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_role ur
+    <include refid="Sql_Where" />
+  </select>
+  
+  <select id="findRoleIdsByInfo" parameterType="com.runzhen.user.domain.UserRole" resultType="java.lang.Integer">
+    select role_id
+    from user_role ur
+    <include refid="Sql_Where" />
   </select>
   
 	<select id="selectByPage" parameterType="com.runzhen.user.domain.UserRole" resultMap="BaseResultMap">
@@ -200,4 +213,26 @@
       remark = #{remark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <insert id="batchInsertUserRole" parameterType="java.util.List">
+  	<foreach collection="list" item="item" open="" close="" separator=";">
+	  	insert into user_role (id, user_id, role_id, 
+	      create_date, create_user, update_date, 
+	      update_user, active, remark
+	      )
+	    values (#{item.id,jdbcType=INTEGER}, #{item.userId,jdbcType=VARCHAR}, #{item.roleId,jdbcType=VARCHAR}, 
+	      #{item.createDate,jdbcType=TIMESTAMP}, #{item.createUser,jdbcType=VARCHAR}, #{item.updateDate,jdbcType=TIMESTAMP}, 
+	      #{item.updateUser,jdbcType=VARCHAR}, #{item.active,jdbcType=VARCHAR}, #{item.remark,jdbcType=VARCHAR}
+	      )
+  	</foreach>
+  </insert>
+  
+  <!-- 根据用户id和角色id批量删除用户角色关系 -->
+  <delete id="batchDeleteUserRole" parameterType="java.util.List">
+  		<foreach collection="list" item="item" open="" close="" separator=";">
+		   delete from user_role
+		   where user_id = #{item.userId,jdbcType=INTEGER}
+		   and role_id = #{item.roleId,jdbcType=INTEGER}
+  		</foreach>
+  </delete>
 </mapper>
