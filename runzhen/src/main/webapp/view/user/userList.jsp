@@ -11,21 +11,27 @@
 <body>
 	<form id="userList_queryForm" role="form" class="form-horizontal" action="">
          <div class="form-group">
-            <label for="userCode" class="control-label col-sm-2">用户编号:</label>
-            <div class="col-sm-2">
-            	<input id="userList_queryParam_userCode" name="userCode" class="form-control" type="text" >
-            </div>
-            <label for="userName" class="control-label col-sm-2">用户名称:</label>
-            <div class="col-sm-2">
-            	<input id="userList_queryParam_userName" name="userName" class="form-control" type="text" >
-            </div>
-         	<label for="active" class="control-label col-sm-2">是否有效:</label>
-         	<div class="col-sm-2">
-				<select id="userList_queryParam_active" name="active" class="form-control">
-					<option value="">全部</option>
-					<option value="Y" selected>是</option>
-					<option value="N">否</option>
-				</select>
+	         <div class="col-sm-4">
+	            <label for="userCode" class="control-label col-sm-4">用户编号:</label>
+	            <div class="col-sm-7">
+	            	<input id="userList_queryParam_userCode" name="userCode" class="form-control" type="text" >
+	            </div>
+	         </div>
+             <div class="col-sm-4">
+	            <label for="userName" class="control-label col-sm-4">用户名称:</label>
+	            <div class="col-sm-7">
+	            	<input id="userList_queryParam_userName" name="userName" class="form-control" type="text" >
+	            </div>
+             </div>
+             <div class="col-sm-4">
+	         	<label for="active" class="control-label col-sm-4">是否有效:</label>
+	         	<div class="col-sm-7">
+					<select id="userList_queryParam_active" name="active" class="form-control">
+						<option value="">全部</option>
+						<option value="Y" selected>是</option>
+						<option value="N">否</option>
+					</select>
+	             </div>
              </div>
          </div>
 	</form>
@@ -33,6 +39,9 @@
 	<div id="userList_toolbar" >
 		<button id="sdfsdf" class="btn btn-success btn-sm" onclick="userList_search()">
 		    <i class="glyphicon glyphicon-search"></i> 查询
+		</button>
+		<button id="sdfsdf" class="btn btn-success btn-sm" onclick="userList_export()">
+		    <i class="glyphicon glyphicon-search"></i> 导出Excel
 		</button>
 	</div>
 	
@@ -234,6 +243,13 @@ function userList_save(){
 	if(flag){
 		util_form_save('userList','<%=contextPath%>/user/update',util_user_getFormData("userList"),'modal');
 	}
+}
+
+/**
+ * @param 导出excel
+ */
+function userList_export(){
+	location.href = "<%=contextPath%>/user/exportUserList";
 }
 </script>
 </body>

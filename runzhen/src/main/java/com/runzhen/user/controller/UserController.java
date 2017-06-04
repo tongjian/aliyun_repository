@@ -1,10 +1,13 @@
 package com.runzhen.user.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.runzhen.common.util.CommonUtil;
+import com.runzhen.common.util.ExcelUtil;
 import com.runzhen.user.UserConstant;
 import com.runzhen.user.domain.UserInfo;
 import com.runzhen.user.domain.UserRole;
@@ -34,7 +38,7 @@ public class UserController {
 	@Autowired
 	private IUserRoleService userRoleService;
 	
-	/*
+	/**
 	 * 功能：注册
 	*/
 	@RequestMapping("/register")
@@ -65,7 +69,7 @@ public class UserController {
 		return resultMap;
 	}
 	
-	/*
+	/**
 	 * 功能：登录
 	*/
 	@RequestMapping("/login")
@@ -99,7 +103,7 @@ public class UserController {
 		return resultMap;		
 	}
 	
-	/*
+	/**
 	 * 功能：注销
 	*/
 	@RequestMapping("/logout")
@@ -113,7 +117,7 @@ public class UserController {
 		return resultMap;
 	}
 	
-	/*
+	/**
 	 * 功能：显示用户列表,分页查询
 	*/
 	@RequestMapping("/list")
@@ -127,7 +131,7 @@ public class UserController {
 		return result;
 	}
 	
-	/*
+	/**
 	 * 功能：显示用户列表
 	*/
 	@RequestMapping("/findInfo")
@@ -137,7 +141,7 @@ public class UserController {
 		return info;
 	}
 	
-	/*
+	/**
 	 * 功能：根据userId查询用户
 	 */
 	@RequestMapping("/selectByPrimaryKey")
@@ -158,7 +162,7 @@ public class UserController {
 		return resultMap;
 	}
 	
-	/*
+	/**
 	 * 功能：修改用户信息
 	*/
 	@RequestMapping("/update")
@@ -184,7 +188,7 @@ public class UserController {
 		return resultMap;
 	}
 	
-	/*
+	/**
 	 * 功能：修改密码
 	*/
 	@RequestMapping("/changePassword")
@@ -210,7 +214,7 @@ public class UserController {
 		return resultMap;
 	}
 	
-	/*
+	/**
 	 * 功能：删除用户，用户置为失效，不做物理删除
 	*/
 	@RequestMapping("/deleteUser")
@@ -226,5 +230,33 @@ public class UserController {
 		resultMap.put(CommonUtil.RESULT_CODE, CommonUtil.RESULT_STATUS_SUCCESS);
 		resultMap.put(CommonUtil.RESULT_MESSAGE, UserConstant.DELETE_USER_RESULT_SUCCESS);		//修改成功
 		return resultMap;
+	}
+	
+	/**
+	 * 功能：导出excel文件
+	 * @throws Exception 
+	*/
+	@RequestMapping(value="/exportUserList")
+	public String exportUserList(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		String fileName = "用户列表.xls";
+		String[] attributes = new String[]{"userCode","userName","email","phoneNumber","remark"};
+		String[] colNames = new String[]{"用户编号","用户名","邮箱","电话","备注"};
+		
+		List<UserInfo> userList = userInfoService.findByInfo(new UserInfo());		//获取所有用户
+		List<Map<String,Object>> dataList = new ArrayList<Map<String,Object>>();
+		for(UserInfo info : userList){
+			Map<String,Object> dataMap = new HashMap<String,Object>();
+			dataMap.put("userCode", info.getUserCode());
+			dataMap.put("userName", info.getUserName());
+			dataMap.put("email", info.getEmail());
+			dataMap.put("phoneNumber", info.getPhoneNumber());
+			dataMap.put("remark", info.getRemark());
+			
+			dataList.add(dataMap);
+		}
+		
+		new ExcelUtil().downloadExcelFile(fileName,attributes, colNames, dataList, response);
+		
+		return null;
 	}
 }

@@ -193,7 +193,7 @@
                       <form id="login_form" role="form" class="form-group" action="">
                               <div class="form-group">
                                   <label for="userCode">用户名</label>
-                                  <input name="userCode" class="form-control" type="text" placeholder="6-15位字母或数字">
+                                  <input id="userCode" name="userCode" class="form-control" type="text" placeholder="6-15位字母或数字">
                               </div>
                               <div class="form-group">
                                   <label for="password">密码</label>
@@ -219,6 +219,18 @@
 <script src="<%=contextPath%>/js/json2.js"></script>
 <script src="<%=contextPath%>/js/common.js"></script>
 <script type="text/javascript">  
+$(function(){
+	$('#login_modal').on('shown.bs.modal', function () {
+		$('#userCode').focus();
+	});
+	
+	//捕获回车事件
+	$(document).keyup(function(event){
+		if(event.keyCode == 13){
+			login_click();
+		}
+	});
+});
 
 //单击“控制台”
 function manage_click(){

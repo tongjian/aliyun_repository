@@ -71,7 +71,7 @@
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-2">说明:</label>
-			 <div class="col-sm-5">
+			 <div class="col-sm-8">
 		        <textarea id="userEdit_remark" name="remark" class="form-control" rows="3" ></textarea>
 		    </div>
 		</div>
