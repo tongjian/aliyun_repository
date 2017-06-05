@@ -249,7 +249,9 @@ function userList_save(){
  * @param 导出excel
  */
 function userList_export(){
-	location.href = "<%=contextPath%>/user/exportUserList";
+	var url = "<%=contextPath%>/user/exportUserList";
+	location.href = url ;
+	window.open(url);
 }
 </script>
 </body>
