@@ -142,9 +142,9 @@ function util_user_getFormData(formId){
  * isModal:是否是模态框
  */
 function util_form_save(pageId,saveUrl,formData,isModal){
-	$("#"+pageId+"_form").data("bootstrapValidator").validate();
-	var flag = $("#"+pageId+"_form").data("bootstrapValidator").isValid();
-	if(flag){
+	//$("#"+pageId+"_form").data("bootstrapValidator").validate();
+	//var flag = $("#"+pageId+"_form").data("bootstrapValidator").isValid();
+	//if(flag){
 		$.ajax({
 			dataType:'json',
 			type: "POST",
@@ -154,7 +154,7 @@ function util_form_save(pageId,saveUrl,formData,isModal){
 				util_result_dialog(pageId,data,isModal);
 			}
 		});
-	}
+	//}
 }
 
 /* 针对模态模态窗口保存返回结果的处理 */
@@ -203,3 +203,35 @@ function util_loginAgain(){
 		}]
 	});
 }
+
+/***************************** excelConfig start **********************************/ 
+/* 获取用户表单值,返回json对象 */
+function util_excelConfig_getFormData(formId){
+	var excelConfig = {};
+	excelConfig.id = $("#"+formId+"_id").val();
+	excelConfig.excelFileCode = $("#"+formId+"_excelFileCode").val();
+	excelConfig.titleCode = $("#"+formId+"_titleCode").val();
+	excelConfig.titleName = $("#"+formId+"_titleName").val();
+	excelConfig.dataType = $("#"+formId+"_dataType").val();
+	excelConfig.dataFormat = $("#"+formId+"_dataFormat").val();
+	excelConfig.titleIndex = $("#"+formId+"_titleIndex").val();
+	excelConfig.importFlag = $("#"+formId+"_importFlag").val();
+	excelConfig.exportFlag = $("#"+formId+"_exportFlag").val();
+	
+	return excelConfig;
+}
+
+
+/* 给用户表单设置值 */
+function util_excelConfig_setFormData(formId,data){
+	$("#"+formId+"_id").val(data.id);					
+	$("#"+formId+"_titleCode").val(data.titleCode);				
+	$("#"+formId+"_titleName").val(data.titleName);				
+	$("#"+formId+"_excelFileCode").val(data.excelFileCode);			
+	$("#"+formId+"_dataType").val(data.dataType);							
+	$("#"+formId+"_dataFormat").val(data.dataFormat);						
+	$("#"+formId+"_titleIndex").val(data.titleIndex);							
+	$("#"+formId+"_importFlag").val(data.importFlag);					
+	$("#"+formId+"_exportFlag").val(data.exportFlag);					
+}
+/***************************** excelConfig end **********************************/ 

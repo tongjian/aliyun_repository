@@ -2,11 +2,14 @@ package com.runzhen.excel.dao;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.runzhen.excel.domain.ExcelConfigInfo;
 
 /**
  * excel导入导出配置
 */
+@Repository
 public interface ExcelConfigDao {
 	
 	/**

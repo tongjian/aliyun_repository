@@ -72,9 +72,11 @@ public class ExcelConfigController {
 		Map<String,Object> resultMap = CommonUtil.getReturnMap();
 		int count = excelConfigService.deleteById(id);
 		if(count == SUCCESS){
-			resultMap.put("resultMessage", "删除成功!");
+			resultMap.put(CommonUtil.RESULT_CODE, CommonUtil.RESULT_STATUS_SUCCESS);
+			resultMap.put(CommonUtil.RESULT_MESSAGE, "删除成功!");
 		}else{
-			resultMap.put("resultMessage", "删除失败!");
+			resultMap.put(CommonUtil.RESULT_CODE, CommonUtil.RESULT_STATUS_ERROR);
+			resultMap.put(CommonUtil.RESULT_MESSAGE, "删除失败!");
 		}
 		return resultMap;
 	}
@@ -96,9 +98,11 @@ public class ExcelConfigController {
 		}
 		
 		if(count == SUCCESS){
-			resultMap.put("resultMessage", "保存成功!");
+			resultMap.put(CommonUtil.RESULT_CODE, CommonUtil.RESULT_STATUS_SUCCESS);
+			resultMap.put(CommonUtil.RESULT_MESSAGE, "保存成功!");
 		}else{
-			resultMap.put("resultMessage", "保存失败!");
+			resultMap.put(CommonUtil.RESULT_CODE, CommonUtil.RESULT_STATUS_ERROR);
+			resultMap.put(CommonUtil.RESULT_MESSAGE, "保存失败!");
 		}
 		return resultMap;
 	}

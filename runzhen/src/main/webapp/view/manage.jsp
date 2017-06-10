@@ -60,6 +60,7 @@
             <li><a href="#" onclick="manage_initPanel('密码修改','user/changePassword')">修改密码</a></li>
           </ul>
           <ul class="nav nav-sidebar">
+            <li><a href="#" onclick="manage_initPanel('Excel配置','excelConfig/excelConfigList')">Excel配置管理</a></li>
             <li><a href="">日志管理</a></li>
             <li><a href="">权限管理</a></li>
             <li><a href="">菜单管理</a></li>
