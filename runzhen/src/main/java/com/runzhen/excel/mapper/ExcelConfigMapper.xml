@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.runzhen.excel.dao.ExcelConfigDao">
+	<resultMap type="com.runzhen.excel.domain.ExcelConfigInfo" id="BaseResultMap">
+		<id property="id" column="id" javaType="java.lang.Integer" />
+		<result property="excelFileCode" column="excelFileCode" javaType="java.lang.String" />
+		<result property="titleCode" column="titleCode" javaType="java.lang.String" />
+		<result property="titleName" column="titleName" javaType="java.lang.String" />
+		<result property="dataType" column="dataType" javaType="java.lang.String" />
+		<result property="dataFormat" column="dataFormat" javaType="java.lang.String" />
+		<result property="exportFlag" column="exportFlag" javaType="java.lang.String" />
+		<result property="importFlag" column="importFlag" javaType="java.lang.String" />
+		<result property="titleIndex" column="titleIndex" javaType="java.lang.Integer" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+	  id, titleCode, titleName, dataType, dataFormat, exportFlag, importFlag, excelFileCode, titleIndex,
+	</sql>
+	
+	<sql id="Sql_Where">
+		<where>
+		   <if test="id != null">
+		     and id = #{id}
+		   </if>
+		   <if test="titleName != null and titleName != ''">
+		     and titleName like '%${titleName}%'
+		   </if>
+		   <if test="dataType != null and dataType != ''">
+		     and dataType = #{dataType}
+		   </if>
+		</where>
+	</sql>
+	
+	<select id="findById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+	  select 
+	  <include refid="Base_Column_List" />
+	  from excel_config
+	  where id = #{id,jdbcType=INTEGER}
+	</select>
+
+	<select id="selectByPage" parameterType="com.runzhen.excel.domain.ExcelConfigInfo" resultMap="BaseResultMap">
+	  select 
+	  <include refid="Base_Column_List" />
+	  from excel_config
+	  <include refid="Sql_Where" />
+	  order by titleIndex asc
+	   <if test="offset != null and limit != null">
+      	limit #{offset},#{limit}
+      </if>
+	</select>
+	
+	<select id="getTotal" parameterType="com.runzhen.excel.domain.ExcelConfigInfo" resultType="java.lang.Integer">
+	  select count(1)
+	  from excel_config
+	  <include refid="Sql_Where" />
+	</select>
+
+	<select id="findAll" parameterType="com.runzhen.excel.domain.ExcelConfigInfo" resultMap="BaseResultMap">
+	  select 
+	  <include refid="Base_Column_List" />
+	  from excel_config
+	  <include refid="Sql_Where" />
+	  order by titleIndex asc
+	</select>
+	
+	<delete id="deleteById" parameterType="java.lang.Integer">
+	  delete from excel_config
+	  where id = #{id,jdbcType=INTEGER}
+	</delete>
+	
+	<insert id="insert" parameterType="com.runzhen.excel.domain.ExcelConfigInfo">
+	  insert into excel_config (id, titleCode, titleName, 
+	    dataType, dataFormat, exportFlag, 
+	    importFlag, excelFileCode, titleIndex
+	    )
+	  values (#{id,jdbcType=INTEGER}, #{titleCode,jdbcType=VARCHAR}, #{titleName,jdbcType=VARCHAR}, 
+	    #{dataType,jdbcType=VARCHAR}, #{dataFormat,jdbcType=VARCHAR}, #{exportFlag,jdbcType=VARCHAR}, 
+	    #{importFlag,jdbcType=VARCHAR}, #{excelFileCode,jdbcType=VARCHAR}, #{titleIndex,jdbcType=INTEGER}
+	    )
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.runzhen.excel.domain.ExcelConfigInfo">
+	  update excel_config
+	  <set>
+	    <if test="titleCode != null">
+	      titleCode = #{titleCode,jdbcType=VARCHAR},
+	    </if>
+	    <if test="titleName != null">
+	      titleName = #{titleName,jdbcType=VARCHAR},
+	    </if>
+	    <if test="dataType != null">
+	      dataType = #{dataType,jdbcType=VARCHAR},
+	    </if>
+	    <if test="dataFormat != null">
+	      dataFormat = #{dataFormat,jdbcType=VARCHAR},
+	    </if>
+	    <if test="exportFlag != null">
+	      exportFlag = #{exportFlag,jdbcType=VARCHAR},
+	    </if>
+	    <if test="importFlag != null">
+	      importFlag = #{importFlag,jdbcType=VARCHAR},
+	    </if>
+	    <if test="excelFileCode != null">
+	      excelFileCode = #{excelFileCode,jdbcType=VARCHAR},
+	    </if>
+	    <if test="titleIndex != null">
+	      titleIndex = #{titleIndex,jdbcType=INTEGER},
+	    </if>
+	  </set>
+	  where id = #{id,jdbcType=INTEGER}
+	</update>
+	
+	<update id="updateByPrimaryKey" parameterType="com.runzhen.excel.domain.ExcelConfigInfo">
+	  update excel_config
+	  set titleCode = #{titleCode,jdbcType=VARCHAR},
+	    titleName = #{titleName,jdbcType=VARCHAR},
+	    dataType = #{dataType,jdbcType=VARCHAR},
+	    dataFormat = #{dataFormat,jdbcType=VARCHAR},
+	    exportFlag = #{exportFlag,jdbcType=VARCHAR},
+	    importFlag = #{importFlag,jdbcType=VARCHAR},
+	    excelFileCode = #{excelFileCode,jdbcType=VARCHAR},
+	    titleIndex = #{titleIndex,jdbcType=INTEGER}
+	  where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

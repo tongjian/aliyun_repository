@@ -1,5 +1,6 @@
 package com.runzhen.common.util;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -39,5 +40,19 @@ public class ReflectionUtil {
 			throw new RuntimeException(e);
 		}
 		return result;
+	}
+	
+	/**
+	 * 设置成员变量的值
+	*/
+	public static void setField(Object obj,Field field,Object value){
+		try {
+			field.setAccessible(true);
+			field.set(obj, value);
+		} catch (IllegalArgumentException | IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			LOGGER.error("set field failure",e);
+			throw new RuntimeException(e);
+		}
 	}
 }
