@@ -29,6 +29,15 @@
 		   <if test="dataType != null and dataType != ''">
 		     and dataType = #{dataType}
 		   </if>
+		   <if test="excelFileCode != null and excelFileCode != ''">
+		     and excelFileCode = #{excelFileCode}
+		   </if>
+		   <if test="exportFlag != null and exportFlag != ''">
+		     and exportFlag = #{exportFlag}
+		   </if>
+		   <if test="importFlag != null and importFlag != ''">
+		     and importFlag = #{importFlag}
+		   </if>
 		</where>
 	</sql>
 	

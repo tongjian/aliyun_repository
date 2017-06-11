@@ -21,6 +21,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.runzhen.common.util.CommonUtil;
 import com.runzhen.common.util.ExcelUtil;
+import com.runzhen.excel.ExcelConfigConstant;
+import com.runzhen.excel.domain.ExcelConfigInfo;
+import com.runzhen.excel.service.ExcelConfigService;
 import com.runzhen.user.UserConstant;
 import com.runzhen.user.domain.UserInfo;
 import com.runzhen.user.domain.UserRole;
@@ -37,6 +40,9 @@ public class UserController {
 	private IUserInfoService userInfoService;
 	@Autowired
 	private IUserRoleService userRoleService;
+	
+	@Autowired
+	private ExcelConfigService excelConfigService;			//excel导入导出配置
 	
 	/**
 	 * 功能：注册
@@ -239,8 +245,14 @@ public class UserController {
 	@RequestMapping(value="/exportUserList")
 	public String exportUserList(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		String fileName = "用户列表.xls";
-		String[] attributes = new String[]{"userCode","userName","email","phoneNumber","remark"};
-		String[] colNames = new String[]{"用户编号","用户名","邮箱","电话","备注"};
+		
+    	ExcelConfigInfo excelConfigInfo = new ExcelConfigInfo();
+    	excelConfigInfo.setExcelFileCode("userinfo");
+    	excelConfigInfo.setExportFlag(ExcelConfigConstant.EXPORT_FLALG_Y);
+    	List<ExcelConfigInfo> excelConfigList = excelConfigService.findAll(excelConfigInfo);
+    	
+//		String[] attributes = new String[]{"userCode","userName","email","phoneNumber","remark"};
+//		String[] colNames = new String[]{"用户编号","用户名","邮箱","电话","备注"};
 		
 		List<UserInfo> userList = userInfoService.findByInfo(new UserInfo());		//获取所有用户
 		List<Map<String,Object>> dataList = new ArrayList<Map<String,Object>>();
@@ -251,11 +263,14 @@ public class UserController {
 			dataMap.put("email", info.getEmail());
 			dataMap.put("phoneNumber", info.getPhoneNumber());
 			dataMap.put("remark", info.getRemark());
+			dataMap.put("birthDate", info.getBirthDate());
+			dataMap.put("createDate", info.getCreateDate());
 			
 			dataList.add(dataMap);
 		}
 		
-		new ExcelUtil().downloadExcelFile(fileName,attributes, colNames, dataList, response);
+		new ExcelUtil().exportExcelFile(fileName, excelConfigList, dataList, response);
+//		new ExcelUtil().downloadExcelFile(fileName,attributes, colNames, dataList, response);
 		
 		return null;
 	}

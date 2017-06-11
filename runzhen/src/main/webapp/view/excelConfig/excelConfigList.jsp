@@ -15,7 +15,7 @@
 	            <label for="excelFileCode" class="control-label col-sm-4">Excel文件:</label>
 	            <div class="col-sm-7">
 	           		<select id="excelConfigList_queryParam_excelFileCode" class="form-control">
-				    	<option value="1">用户基础数据</option>
+				    	<option value="userinfo">用户基础数据</option>
 				    </select>
 	            </div>
 	         </div>

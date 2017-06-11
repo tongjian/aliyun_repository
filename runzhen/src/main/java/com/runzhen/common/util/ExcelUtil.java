@@ -14,6 +14,7 @@ import java.util.Map;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.poi.hpsf.SummaryInformation;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
@@ -26,6 +27,8 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.util.CellRangeAddress;
+
+import com.runzhen.excel.domain.ExcelConfigInfo;
 
 public class ExcelUtil {
 
@@ -267,4 +270,51 @@ public class ExcelUtil {
         outputStream.close();
     }
 
+    /**
+     * 导出excel文件
+     * @throws Exception 
+     */
+    public void exportExcelFile(String fileName,List<ExcelConfigInfo> excelConfigList,List<Map<String,Object>> dataList,HttpServletResponse response) throws Exception{
+    	
+    	if(CollectionUtils.isEmpty(excelConfigList)){
+    		throw new Exception("没有配置要导出的列.");
+    	}
+    	
+    	int excelConfigSize = excelConfigList.size();
+    	String[] attributes = new String[excelConfigSize];
+    	String[] colNames = new String[excelConfigSize];
+    	for(int i=0;i<excelConfigSize;i++){	
+    		ExcelConfigInfo info = excelConfigList.get(i);
+    		attributes[i] = info.getTitleCode();		//excel列对应导出的属性
+    		colNames[i] = info.getTitleName();			//excel列名称
+    	}
+    	
+    	this.validateAttribute(attributes, dataList);		//验证要导出的属性是否存在
+    	
+    	//导出excel数据
+    	this.downloadExcelFile(fileName, attributes, colNames, dataList, response);
+    }
+    
+    /**
+     * 验证后台配置的要导出的列是否都存在
+     * @throws Exception 
+     */
+    public void validateAttribute(String[] attributes,List<Map<String,Object>> dataList) throws Exception{
+    	if(CollectionUtils.isNotEmpty(dataList)){
+    		Map<String,Object> data = dataList.get(0);				//获取任一行记录进行验证
+    		for(String excelAttr : attributes){
+    			boolean isExists = false;
+    			for(String dataKey : data.keySet()){
+    				if(dataKey.equalsIgnoreCase(excelAttr)){
+    					isExists = true;
+    				}
+    			}
+    			
+    			if(!isExists){			//说明这个属性不存在，无法导出
+    				System.out.println("tj:"+"属性'"+excelAttr+"'不存在,无法导出.");
+    				throw new Exception("属性'"+excelAttr+"'不存在,无法导出.");
+    			}
+    		}
+    	}
+    }
 }

@@ -23,10 +23,12 @@ public class ExcelConfigConstant {
 	/**
 	 *  是否导入列;
 	 */
-	public static final String IMPORT_FLALG = "0";				//是否导入；0：为导入，1：为不导入
+	public static final String IMPORT_FLALG_Y = "0";				//是否导入；0：为导入，1：为不导入
+	public static final String IMPORT_FLALG_N = "1";				//是否导入；0：为导入，1：为不导入
 	
 	/**
 	 *  是否导出列;
 	 */
-	public static final String EXPORT_FLALG = "0";				//是否导出；0：为导入，1：为不导入
+	public static final String EXPORT_FLALG_Y = "0";				//是否导出；0：为导入，1：为不导入
+	public static final String EXPORT_FLALG_N = "1";				//是否导出；0：为导入，1：为不导入
 }
